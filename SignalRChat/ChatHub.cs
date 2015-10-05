@@ -22,7 +22,6 @@ namespace SignalRChat
         {
             var id = Context.ConnectionId;
 
-
             if (ConnectedUsers.Count(x => x.ConnectionId == id) == 0)
             {
                 ConnectedUsers.Add(new UserDetail { ConnectionId = id, UserName = userName });
@@ -37,10 +36,12 @@ namespace SignalRChat
 
         }
 
-        public void SendMessageToAll(string userName, string message)
+        public void SendMessageToAll(string userName, string message, bool secureChat)
         {
-            // store last 100 messages in cache
-            AddMessageinCache(userName, message);
+            if (!secureChat) {
+                // store last 100 messages in cache if isSecureChat not checked
+                AddMessageinCache(userName, message);
+            }
 
             // Broad cast message
             Clients.All.messageReceived(userName, message);
@@ -74,12 +75,9 @@ namespace SignalRChat
 
                 var id = Context.ConnectionId;
                 Clients.All.onUserDisconnected(id, item.UserName);
-
             }
-
             return base.OnDisconnected();
         }
-
      
         #endregion
 

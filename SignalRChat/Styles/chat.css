@@ -59,7 +59,7 @@
 
     .draggable .header
     {
-        cursor: move;
+        /*cursor: move;*/
         background-color: #d9edf7;
         border-bottom: #bce8f1 solid 1px;
         color: #1e4638;
@@ -128,6 +128,46 @@
     color: gray;
 }
 
+/**
+    LOGIN BOX
+**/
+.warning-box {
+    margin-top: 15px; 
+    margin-bottom: 10px !important;
+    padding: 10px !important;
+}
+.warning-ul {
+    margin: 5px 0px 0px 8px;
+    padding: 0px 0px 0px 0px;
+}
+.warning-li {
+    font-size: 11px;
+}
+.warning-last-li {
+    margin-bottom: 10px;
+}
+.warning-TOC {
+    margin-left:45px;
+    font-size: 11px;
+    cursor: pointer;
+}
+.info-box {
+    margin-bottom: 10px !important;
+    padding: 10px !important;
+}
+.toc-glyphs {
+    cursor: pointer;
+    float: right;
+    border: 1px solid lightgray;
+    font-size: 1em;
+}
+.toc-glyphs:hover {
+    color:white;
+    background-color: #ED6678;
+}
+.toc-close {
+    top: 3px !important;
+}
 
 /**
     PRIVATE MESSAGES
@@ -135,14 +175,17 @@
 .pm-glyphs {
     cursor: pointer;
     top: 2px !important;
-    margin-right: 4px;
+    margin-right: 3px;
     border: 1px solid lightgray;
     font-size: 1.2em;
+    vertical-align:middle;
+    text-align:center;
+    padding: 2px;
 }
 .pm-glyphs:hover {
     color: white;
 }
-.pm-minimize:hover {
+.pm-glyphs-blue:hover {
     background-color: cornflowerblue;
 }
 .pm-close:hover {

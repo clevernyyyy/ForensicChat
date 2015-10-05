@@ -11,6 +11,7 @@
         <!--Script references. -->
         <!--Reference the jQuery library. -->
         <script src="/Scripts/jquery-1.9.1.min.js"></script>
+        <script src="Scripts/bootstrap.min.js"></script>
 
         <!--Reference jQuery UI libraries-->
         <script src="/Scripts/ui/jquery.ui.core.js"></script>
@@ -78,6 +79,22 @@
                         <label style="vertical-align:sub;">Secure Chat</label>
                     </div>
                     <input id="btnStartChat" type="button" class="btn btn-info" value="Start Chat" />
+                </div>
+                <div id="divSecureWarning"class="alert alert-warning warning-box" style="display:none;">
+                    <span>By checking <strong>Secure Chat</strong>, you agree to the following:</span>
+                    <ul class="warning-ul">
+                        <li class="warning-ul warning-li">You will download the executable in order to forensically secure this chat session.  The chat session will not start without the executable downloaded and the <strong>Secure Chat</strong> box checked.</li>
+                        <li class="warning-ul warning-li warning-last-li">We will not cache your messages.</li>
+                    </ul>
+                    <span class="warning-TOC"><a id="warning-toc">Terms and Conditions</a></span>
+                </div>
+                <div id="divWarningTOC" class="alert alert-info info-box" style="display:none;">
+                    <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
+                    <span style="margin-top: 5px;"><strong>Terms and Conditions:</strong></span>
+                    <ol class="warning-ul">
+                        <li class="warning-ul warning-li">This secure chat requires the use of Google Chrome Version 45.0.2454.99 or later.</li>
+                        <li class="warning-ul warning-li">We will gain administrator access if needed in order to forensically secure this chat session.</li>
+                    </ol>
                 </div>
             </div>
             <!-- CHAT -->
