@@ -41,10 +41,10 @@ function registerEvents(chatHub) {
 
         if (chkSecureChat.is(":checked")) {
             //TODO - force download to proceed
-            console.log('secure chat is checked');
+            //console.log('secure chat is checked');
             proceedLogin = true;
         } else {
-            console.log('secure chat is unchecked.');
+            //console.log('secure chat is unchecked.');
             proceedLogin = true;
         }
 
@@ -182,7 +182,7 @@ function AddUser(chatHub, id, name) {
 
         code = $('<a id="' + id + '" class="user" >' + name + '<a>');
 
-        $(code).dblclick(function () {
+        $(code).click(function () {
 
             var id = $(this).attr('id');
 
@@ -216,11 +216,13 @@ function OpenPrivateChatWindow(chatHub, id, userName) {
 function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
 
     // TODO - change the img Delete to a glyphicon maybe
-    var div = '<div id="' + ctrId + '" class="ui-widget-content draggable" rel="0">' +
+    var div = '<div id="' + ctrId + '" class="ui-widget-content draggable pm-box" rel="0">' +
                '<div class="header">' +
                   '<div  style="float:right;">' +
-                      '<img id="imgClosePM"  style="cursor:pointer;" src="/Images/delete.png"/>' +
+                      '<a id="imgMinPM" class="pm-glyphs pm-minimize"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>' +
+                      '<a id="closePM" class="pm-glyphs pm-close"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>' +
                    '</div>' +
+                   '<span class="glyphicon glyphicon-user pm-user" aria-hidden="true"></span>' +
                    '<span class="selText" rel="0">' + userName + '</span>' +
                '</div>' +
                '<div id="divMessage" class="messageArea">' +
@@ -229,32 +231,16 @@ function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
                   '<div class="input-group">' +
                       '<input id="txtPrivateMessage" class="form-control" type="text" placeholder="Send a message" />' +
                       '<span class="input-group-btn">' +
-                        '<button id="btnSendMessage" class="btn btn-info submitButton" type="button">Send</button>' +
+                        '<button id="btnSendMessage" class="btn btn-info" type="button">Send</button>' +
                       '</span>' +
                   '</div>' +
                '</div>' +
             '</div>';
 
-    //var div = '<div id="' + ctrId + '" class="panel panel-default">' +
-    //            '<div class="panel-heading">' +
-    //                '<h3 class="panel-title">' + userName + '</h3>' +
-    //                '<div  style="float:right;">' +
-    //                    '<img id="imgClosePM"  style="cursor:pointer;" src="/Images/delete.png"/>' +
-    //                '</div>' +
-    //            '</div>' +
-    //            '<div id="divMessage" class="panel-body messageArea">' +
-    //            '</div>' +
-    //            '<div class="panel-footer">' +
-    //               '<div class="buttonBar">' +
-    //                  '<input id="txtPrivateMessage" class="msgText" type="text"   />' +
-    //                  '<input id="btnSendMessage" class="submitButton button" type="button" value="Send"   />' +
-    //               '</div>' +
-    //            '</div>';
-
     var $div = $(div);
 
-    // DELETE BUTTON IMAGE
-    $div.find('#imgClosePM').click(function () {
+    // Close Private Message
+    $div.find('#closePM').click(function () {
         $('#' + ctrId).remove();
     });
 
@@ -280,16 +266,28 @@ function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
 
     AddDivToContainer($div);
 
+    // Move all PM boxes to the right, append one after another
+    var rooms = $(".pm-box");
+
+    rooms.each(function (index) {
+        var room = $(this);
+        var right = 0;
+
+        if (index > 0) {
+            right = parseInt(rooms.eq(index - 1).css("right")) + rooms.eq(index - 1).width() + 10;
+        }
+        room.css("right", right + "px");
+    });
+
+
 }
 
 function AddDivToContainer($div) {
     $('#divContainer').prepend($div);
 
     $div.draggable({
-
         handle: ".header",
         stop: function () {
-
         }
     });
 }
