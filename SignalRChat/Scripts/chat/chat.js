@@ -1,21 +1,21 @@
 ﻿$(document).ready(function () {
+});
+
+$(function () {
+    // this portion is responsible for the actions in the login box (bootstrap alerts)
+    // it must be ready upon document load
     $('#chkSecureChat').change(function () {
         if (this.checked)
             $('#divSecureWarning').fadeIn('slow');
         else
-            $('#divSecureWarning').fadeOut('slow');
-
+            $('#divSecureWarning').slideUp('slow');
     });
     $("#warning-toc").click(function () {
-        //$('#divWarningTOC').show();
         $('.alert-info').show()
     });
     $("[data-hide]").on("click", function () {
         $(this).closest("." + $(this).attr("data-hide")).hide();
     });
-});
-
-$(function () {
 
     setScreen(false);
 
@@ -55,7 +55,7 @@ function registerEvents(chatHub) {
         var proceedLogin = false;
 
         if (chkSecureChat.is(":checked")) {
-            //TODO - force download to proceed
+            // TODO - force download to proceed
             //console.log('secure chat is checked');
             isSecureChat = true;
             proceedLogin = true;
@@ -69,11 +69,11 @@ function registerEvents(chatHub) {
                 chatHub.server.connect(name);
             }
             else {
-                //TODO - bootstrap error notification perhaps instead of alert (ugly)
+                // TODO - bootstrap error notification perhaps instead of alert (ugly)
                 alert("Please enter name");
             }
         } else {
-            //TODO - error message - didn't download exe
+            // TODO - error message - didn't download exe
         }
     });
 
@@ -156,6 +156,8 @@ function registerClientMethods(chatHub) {
 }
 
 function AddUser(chatHub, id, name) {
+    // TODO - insert alphabetically.  Users won't want random order.
+    // TODO - this still seems a little buggy, I've seen a few cases of two users added, but I've been unable to replicate.
     var userId = $('#hdId').val();
     var code = "";
 
@@ -184,6 +186,7 @@ function AddMessage(userName, message) {
 }
 
 function OpenPrivateChatWindow(chatHub, id, userName) {
+    // creates a uniqueID
     var ctrId = 'private_' + id;
 
     if ($('#' + ctrId).length > 0) return;
@@ -192,7 +195,6 @@ function OpenPrivateChatWindow(chatHub, id, userName) {
 }
 
 function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
-    // TODO - change the img Delete to a glyphicon maybe
     var div = '<div id="' + ctrId + '" class="draggable pm-box" rel="0">' +
                '<div class="header">' +
                   '<div style="float:right;">' +
@@ -223,28 +225,34 @@ function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
     });
 
     // Minimize Private Message
+    // TODO - When minimizing - ensure the browser doesn't feel the need to add a scrollbar. 
+    // (i.e. - Don't minimize past the bottom of the browser.)
     $div.find('#minimize-pm').click(function () {
+        // toggle the glyphs
         $(this).addClass('hidden');
         $div.find('#popup-pm').removeClass('hidden');
+
+        // hide messaging content
         $('.pm-message-' + ctrId).hide();
         $('.pm-sendbar-' + ctrId).hide();
     });
 
     // PopUp Private Message
     $div.find('#popup-pm').click(function () {
+        // toggle the glyphs
         $(this).addClass('hidden');
         $div.find('#minimize-pm').removeClass('hidden');
+
+        // hide messaging content
         $('.pm-message-' + ctrId).show();
         $('.pm-sendbar-' + ctrId).show();
     });
 
     // Send Button event
     $div.find("#btnSendMessage").click(function () {
-
         $textBox = $div.find("#txtPrivateMessage");
         var msg = $textBox.val();
         if (msg.length > 0) {
-
             chatHub.server.sendPrivateMessage(userId, msg);
             $('#chatBox').animate({ scrollTop: $('#chatBox').prop('scrollHeight') });
             $textBox.val('');
@@ -261,6 +269,7 @@ function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
     AddDivToContainer($div);
 
     // Move all PM boxes to the right, append one after another
+    // TODO - I believe the added Private Message should append to the left, NOT the right-hand corner
     var rooms = $(".pm-box");
 
     rooms.each(function (index) {
