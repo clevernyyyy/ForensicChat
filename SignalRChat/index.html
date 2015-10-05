@@ -3,7 +3,7 @@
     <head>
         <title></title>
 
-        <link type="text/css" rel="stylesheet" href="Styles/ChatStyle.css" />
+        <link type="text/css" rel="stylesheet" href="Styles/chat.css" />
         <link href="/Content/bootstrap.min.css" rel="stylesheet" />
 
         <link rel="stylesheet" href="/Styles/JQueryUI/themes/base/jquery.ui.all.css">
@@ -28,6 +28,7 @@
         <script src="/Scripts/chat/chat.js"></script>
     </head>
     <body>
+        <!-- NAVIGATION -->
         <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -61,6 +62,7 @@
         <br />
 
         <div id="divContainer" class="container">
+            <!-- LOGIN -->
             <div id="divLogin" class="login">
                 <div class="input-group" style="margin-bottom:5px;">
                     <span id="basic-username" class="input-group-addon glyphicon glyphicon-user"></span>
@@ -71,9 +73,14 @@
                     <input id="password" type="text" class="form-control" placeholder="Password" aria-describedby="basic-password" style="margin-top:1px;">
                 </div>
                 <div id="divButton">
+                    <div id="checkbox" style="float:left; margin-top:5px;">
+                        <input id="chkSecureChat" type="checkbox" class="checkbox-inline" style="margin-top:5px;"> <!--checked> (this defaults checked attribute)-->
+                        <label style="vertical-align:sub;">Secure Chat</label>
+                    </div>
                     <input id="btnStartChat" type="button" class="btn btn-info" value="Start Chat" />
                 </div>
             </div>
+            <!-- CHAT -->
             <div id="divChat" class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title">Welcome <span id='spanUser'></span>!  Let's get chatting...</h3>
@@ -93,24 +100,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-            <!--<div id="divChat" class="chatRoom">
-                <div class="title">
-                    Welcome <span id='spanUser'></span>!  Let's get chatting...
-                </div>
-                <div class="content">
-                    <div id="divChatWindow" class="chatWindow">
-                    </div>
-                    <div id="divusers" class="users">
-                    </div>
-                </div>
-                <div class="messageBar">
-                    <input class="textbox" type="text" id="txtMessage" />
-                    <input id="btnSendMsg" type="button" value="Send" class="submitButton" />
-                </div>
-            </div>-->
 
             <input id="hdId" type="hidden" />
             <input id="hdUserName" type="hidden" />

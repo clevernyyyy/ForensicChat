@@ -3,7 +3,7 @@ $(function () {
 
     setScreen(false);
 
-    // calculating margin-left to align it to center;
+    // Calculating margin-left to align it to center;
     var width = $('.navbar-center').width();
     $('.navbar-center').css('margin-left', '-' + (width / 2) + 'px');
 
@@ -22,30 +22,42 @@ $(function () {
 });
 
 function setScreen(isLogin) {
-
     if (!isLogin) {
-
         $("#divChat").hide();
         $("#divLogin").show();
     }
     else {
-
         $("#divChat").show();
         $("#divLogin").hide();
     }
-
 }
 
 function registerEvents(chatHub) {
 
     $("#btnStartChat").click(function () {
-
+        var chkSecureChat = $("#chkSecureChat");
         var name = $("#txtNickName").val();
-        if (name.length > 0) {
-            chatHub.server.connect(name);
+        var proceedLogin = false;
+
+        if (chkSecureChat.is(":checked")) {
+            //TODO - force download to proceed
+            console.log('secure chat is checked');
+            proceedLogin = true;
+        } else {
+            console.log('secure chat is unchecked.');
+            proceedLogin = true;
         }
-        else {
-            alert("Please enter name");
+
+        if (proceedLogin) {
+            if (name.length > 0) {
+                chatHub.server.connect(name);
+            }
+            else {
+                //TODO - bootstrap error notification perhaps instead of alert (ugly)
+                alert("Please enter name");
+            }
+        } else {
+            //TODO - error message - didn't download exe
         }
 
     });
@@ -203,27 +215,46 @@ function OpenPrivateChatWindow(chatHub, id, userName) {
 
 function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
 
+    // TODO - change the img Delete to a glyphicon maybe
     var div = '<div id="' + ctrId + '" class="ui-widget-content draggable" rel="0">' +
                '<div class="header">' +
                   '<div  style="float:right;">' +
-                      '<img id="imgDelete"  style="cursor:pointer;" src="/Images/delete.png"/>' +
+                      '<img id="imgClosePM"  style="cursor:pointer;" src="/Images/delete.png"/>' +
                    '</div>' +
-
                    '<span class="selText" rel="0">' + userName + '</span>' +
                '</div>' +
                '<div id="divMessage" class="messageArea">' +
-
                '</div>' +
                '<div class="buttonBar">' +
-                  '<input id="txtPrivateMessage" class="msgText" type="text"   />' +
-                  '<input id="btnSendMessage" class="submitButton button" type="button" value="Send"   />' +
+                  '<div class="input-group">' +
+                      '<input id="txtPrivateMessage" class="form-control" type="text" placeholder="Send a message" />' +
+                      '<span class="input-group-btn">' +
+                        '<button id="btnSendMessage" class="btn btn-info submitButton" type="button">Send</button>' +
+                      '</span>' +
+                  '</div>' +
                '</div>' +
             '</div>';
+
+    //var div = '<div id="' + ctrId + '" class="panel panel-default">' +
+    //            '<div class="panel-heading">' +
+    //                '<h3 class="panel-title">' + userName + '</h3>' +
+    //                '<div  style="float:right;">' +
+    //                    '<img id="imgClosePM"  style="cursor:pointer;" src="/Images/delete.png"/>' +
+    //                '</div>' +
+    //            '</div>' +
+    //            '<div id="divMessage" class="panel-body messageArea">' +
+    //            '</div>' +
+    //            '<div class="panel-footer">' +
+    //               '<div class="buttonBar">' +
+    //                  '<input id="txtPrivateMessage" class="msgText" type="text"   />' +
+    //                  '<input id="btnSendMessage" class="submitButton button" type="button" value="Send"   />' +
+    //               '</div>' +
+    //            '</div>';
 
     var $div = $(div);
 
     // DELETE BUTTON IMAGE
-    $div.find('#imgDelete').click(function () {
+    $div.find('#imgClosePM').click(function () {
         $('#' + ctrId).remove();
     });
 
@@ -261,11 +292,4 @@ function AddDivToContainer($div) {
 
         }
     });
-
-    ////$div.resizable({
-    ////    stop: function () {
-
-    ////    }
-    ////});
-
 }
