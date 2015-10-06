@@ -1,6 +1,8 @@
 ﻿$(document).ready(function () {
 });
 
+// TODO - logically sort/separate JS components.
+
 $(function () {
     // this portion is responsible for the actions in the login box (bootstrap alerts)
     // it must be ready upon document load
@@ -81,6 +83,7 @@ function registerEvents(chatHub) {
         var msg = $("#txtMessage").val();
         if (msg.length > 0) {
             var userName = $('#hdUserName').val();
+            console.log('isSecureChat: ', isSecureChat);
             chatHub.server.sendMessageToAll(userName, msg, isSecureChat);
             $("#txtMessage").val('');
         }
@@ -100,6 +103,8 @@ function registerEvents(chatHub) {
 }
 
 function registerClientMethods(chatHub) {
+    var currentUser = "";
+
     // Calls when user successfully logged in
     chatHub.client.onConnected = function (id, userName, allUsers, messages) {
         setScreen(true);
@@ -122,6 +127,7 @@ function registerClientMethods(chatHub) {
     // On New User Connected
     chatHub.client.onNewUserConnected = function (id, name) {
         AddUser(chatHub, id, name);
+        currentUser = name;
     }
 
     // On User Disconnected
@@ -142,12 +148,17 @@ function registerClientMethods(chatHub) {
 
     chatHub.client.sendPrivateMessage = function (windowId, fromUserName, message) {
         var ctrId = 'private_' + windowId;
+        var time = getCurrentTimeFormatted(2);
 
         if ($('#' + ctrId).length == 0) {
             createPrivateChatWindow(chatHub, windowId, ctrId, fromUserName);
         }
 
-        $('#' + ctrId).find('#divMessage').append('<div class="message"><span class="userName">' + fromUserName + '</span>: ' + message + '</div>');
+        if (currentUser === fromUserName) {
+            $('#' + ctrId).find('#divMessage').append('<div style="padding:5px;"><div class="message private-message"><p>' + message + '</p>' + '<time>' + fromUserName + '<strong> · </strong>' + time + '</time></div></div>');
+        } else {
+            $('#' + ctrId).find('#divMessage').append('<div style="padding:5px;"><div class="message private-message pm-self"><p>' + message + '</p>' + '<time>' + time + '</time></div></div><div class="clearfix"></div>');
+        }
 
         // set scrollbar
         var height = $('#' + ctrId).find('#divMessage')[0].scrollHeight;
@@ -158,6 +169,7 @@ function registerClientMethods(chatHub) {
 function AddUser(chatHub, id, name) {
     // TODO - insert alphabetically.  Users won't want random order.
     // TODO - this still seems a little buggy, I've seen a few cases of two users added, but I've been unable to replicate.
+    // TODO - sort current user to the top, maybe throw a <hr> below and make cursor != pointer on current user
     var userId = $('#hdId').val();
     var code = "";
 
@@ -179,6 +191,7 @@ function AddUser(chatHub, id, name) {
 }
 
 function AddMessage(userName, message) {
+    // TODO - make like Hangouts like the private messages.  (I don't know if this is entirely necessary)
     $('#divChatWindow').append('<div class="message"><span class="userName">' + userName + '</span>: ' + message + '</div>');
 
     var height = $('#divChatWindow')[0].scrollHeight;
@@ -205,7 +218,7 @@ function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
                    '<span class="glyphicon glyphicon-user pm-user" aria-hidden="true"></span>' +
                    '<span class="selText" rel="0">' + userName + '</span>' +
                '</div>' +
-               '<div id="divMessage" class="messageArea pm-message-' + ctrId + '">' +
+               '<div id="divMessage" style="background-color: #f5f5f5" class="messageArea pm-message-' + ctrId + '">' +
                '</div>' +
                '<div class="buttonBar pm-sendbar-' + ctrId + '">' +
                   '<div class="input-group">' +
@@ -225,8 +238,7 @@ function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
     });
 
     // Minimize Private Message
-    // TODO - When minimizing - ensure the browser doesn't feel the need to add a scrollbar. 
-    // (i.e. - Don't minimize past the bottom of the browser.)
+    // TODO - When minimized and we receive a new message, flash the header (or something).
     $div.find('#minimize-pm').click(function () {
         // toggle the glyphs
         $(this).addClass('hidden');
@@ -268,8 +280,8 @@ function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
 
     AddDivToContainer($div);
 
-    // Move all PM boxes to the right, append one after another
     // TODO - I believe the added Private Message should append to the left, NOT the right-hand corner
+    // Move all PM boxes to the right, append one after another
     var rooms = $(".pm-box");
 
     rooms.each(function (index) {
@@ -292,4 +304,33 @@ function AddDivToContainer($div) {
     //    stop: function () {
     //    }
     //});
+}
+
+// TODO - Maybe throw into another JS file - like a references js file.
+function getCurrentTimeFormatted(format) {
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var d = new Date();
+    var day = days[d.getDay()];
+    var hr = d.getHours();
+    var min = d.getMinutes();
+    if (min < 10) {
+        min = "0" + min;
+    }
+    var ampm = hr < 12 ? "am" : "pm";
+    var date = d.getDate();
+    var month = months[d.getMonth()];
+    var year = d.getFullYear();
+
+    switch (format) {
+        case 1:
+            ret = hr + ":" + min + ampm + "<strong> · </strong>" + date + " " + month + " " + year;
+            break;
+        case 2:
+            ret = hr + ":" + min + ampm;
+            break;
+        default:
+            ret = day + " " + hr + ":" + min + ampm + " " + date + " " + month + " " + year;
+    }
+    return ret;
 }

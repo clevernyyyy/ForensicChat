@@ -31,9 +31,7 @@ namespace SignalRChat
 
                 // send to all except caller client
                 Clients.AllExcept(id).onNewUserConnected(id, userName);
-
             }
-
         }
 
         public void SendMessageToAll(string userName, string message, bool secureChat)
@@ -49,7 +47,6 @@ namespace SignalRChat
 
         public void SendPrivateMessage(string toUserId, string message)
         {
-
             string fromUserId = Context.ConnectionId;
 
             var toUser = ConnectedUsers.FirstOrDefault(x => x.ConnectionId == toUserId) ;
@@ -63,7 +60,6 @@ namespace SignalRChat
                 // send to caller user
                 Clients.Caller.sendPrivateMessage(toUserId, fromUser.UserName, message); 
             }
-
         }
 
         public override System.Threading.Tasks.Task OnDisconnected()
@@ -90,8 +86,6 @@ namespace SignalRChat
             if (CurrentMessage.Count > 100)
                 CurrentMessage.RemoveAt(0);
         }
-
         #endregion
     }
-
 }

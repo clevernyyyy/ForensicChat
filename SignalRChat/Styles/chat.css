@@ -49,59 +49,6 @@
 }
 
 
-.draggable
-{
-    position: absolute;
-    border: #bce8f1 solid 1px !important;
-    width: 250px;
-    bottom: 0;   
-}
-
-    .draggable .header
-    {
-        /*cursor: move;*/
-        background-color: #d9edf7;
-        border-bottom: #bce8f1 solid 1px;
-        color: #1e4638;
-    }
-
-    .draggable .selText
-    {
-        color: black;
-        padding: 4px;
-    }
-
-    .draggable .messageArea
-    {
-        width: 250px;
-        overflow-y: scroll;
-        height: 200px;
-         border-bottom: #bce8f1 solid 1px;
-    }
-
-        .draggable .messageArea .message
-        {
-            padding: 4px;
-        }
-
-    .draggable .buttonBar
-    {
-        width: 250px;
-       padding:4px;
-    }
-
-        .draggable .buttonBar .msgText
-        {
-            width: 172px;
-        }
-
-        .draggable .buttonBar .button
-        {
-           margin-left:4px;
-            width: 55px;
-        }
-
-
 .chatBox{
     border-right: 1px solid lightgray;
     overflow-y: auto;
@@ -201,3 +148,80 @@
     width: 250px;
     margin-right:10px;
 }
+.private-message {
+    background: white;
+    padding: 10px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.2);
+}
+    .private-message p {
+        font-size: 0.90em;
+        margin: 0 0 0.05em 0;
+    }
+    .private-message time {
+        font-size: 0.80em;
+        color: #ccc;
+    }
+.pm-self {
+    justify-content: flex-end;
+    align-items: flex-end;
+    float: right;
+}
+
+
+.draggable
+{
+    position: absolute;
+    border: #bce8f1 solid 1px !important;
+    width: 250px;
+    bottom: 0;   
+}
+
+    .draggable .header
+    {
+        /*cursor: move;*/
+        background: radial-gradient(#ffffff, #d9edf7);
+        border-bottom: #bce8f1 solid 1px;
+        color: #1e4638;
+        height: 30px;
+        padding-top: 3px;
+    }
+
+    .draggable .selText
+    {
+        color: black;
+        padding: 4px;
+    }
+
+    .draggable .messageArea
+    {
+        width: 250px;
+        overflow-y: scroll;
+        height: 375px;
+        border-bottom: #bce8f1 solid 1px;
+    }
+
+        .draggable .messageArea .message
+        {
+            padding: 2px 10px;
+            display: inline-block;
+        }
+
+    .draggable .buttonBar
+    {
+       width: 250px;
+       padding:4px;
+    }
+
+        .draggable .buttonBar .msgText
+        {
+            width: 172px;
+        }
+
+        .draggable .buttonBar .button
+        {
+           margin-left:4px;
+           width: 55px;
+        }
