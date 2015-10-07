@@ -154,10 +154,12 @@ function registerClientMethods(chatHub) {
             createPrivateChatWindow(chatHub, windowId, ctrId, fromUserName);
         }
 
+        // TODO - this is not always accurate.  Figure out better way to differentiate to/from.
+        console.log('currentUser: ', currentUser, '  fromUser: ', fromUserName);
         if (currentUser === fromUserName) {
-            $('#' + ctrId).find('#divMessage').append('<div style="padding:5px;"><div class="message private-message"><p>' + message + '</p>' + '<time>' + fromUserName + '<strong> · </strong>' + time + '</time></div></div>');
+            $('#' + ctrId).find('#divMessage').append('<div style="padding:5px; position:relative;"><div class="message private-message-other"><p>' + message + '</p>' + '<time>' + fromUserName + '<strong> · </strong>' + time + '</time></div></div>');
         } else {
-            $('#' + ctrId).find('#divMessage').append('<div style="padding:5px;"><div class="message private-message pm-self"><p>' + message + '</p>' + '<time>' + time + '</time></div></div><div class="clearfix"></div>');
+            $('#' + ctrId).find('#divMessage').append('<div style="padding:5px; position:relative;"><div class="message private-message-self"><p>' + message + '</p>' + '<time>' + time + '</time></div></div><div class="clearfix"></div>');
         }
 
         // set scrollbar
