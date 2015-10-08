@@ -114,7 +114,8 @@ function registerClientMethods(chatHub) {
         $('#spanUser').html(userName);
 
         // Add All Users
-        for (i = 0; i < allUsers.length; i++) {
+        for (i = 0; i < allUsers.length - 1; i++) {
+            //console.log('allUsers: ', allUsers[i]);
             AddUser(chatHub, allUsers[i].ConnectionId, allUsers[i].UserName);
         }
 
@@ -126,6 +127,7 @@ function registerClientMethods(chatHub) {
 
     // On New User Connected
     chatHub.client.onNewUserConnected = function (id, name) {
+        //console.log('newUser: ', id, '  name: ', name);
         AddUser(chatHub, id, name);
         currentUser = name;
     }
@@ -136,10 +138,9 @@ function registerClientMethods(chatHub) {
         var ctrId = 'private_' + id;
         $('#' + ctrId).remove();
 
-        var disc = $('<div class="disconnect">"' + userName + '" logged off.</div>');
-        $(disc).hide();
-        $('#divusers').prepend(disc);
-        $(disc).fadeIn(200).delay(2000).fadeOut(200);
+        var logOffAlert = $('#divUserDisconnected');
+        logOffAlert.html(userName + ' has logged off.')
+        $(logOffAlert).fadeIn(200).delay(2000).fadeOut(200);
     }
 
     chatHub.client.messageReceived = function (userName, message) {
@@ -148,15 +149,16 @@ function registerClientMethods(chatHub) {
 
     chatHub.client.sendPrivateMessage = function (windowId, fromUserName, message) {
         var ctrId = 'private_' + windowId;
-        var time = getCurrentTimeFormatted(2);
+        var time = getCurrentTimeFormatted(2, true);
 
         if ($('#' + ctrId).length == 0) {
             createPrivateChatWindow(chatHub, windowId, ctrId, fromUserName);
         }
+        var user = $('#hdUserName').val();
 
-        // TODO - this is not always accurate.  Figure out better way to differentiate to/from.
-        console.log('currentUser: ', currentUser, '  fromUser: ', fromUserName);
-        if (currentUser === fromUserName) {
+        // TODO - although this works, it would technically break if we have two users with same username.
+        // console.log('currentUser: ', user, '  fromUser: ', fromUserName);
+        if (user === fromUserName) {
             $('#' + ctrId).find('#divMessage').append('<div style="padding:5px; position:relative;"><div class="message private-message-other"><p>' + message + '</p>' + '<time>' + fromUserName + '<strong> · </strong>' + time + '</time></div></div>');
         } else {
             $('#' + ctrId).find('#divMessage').append('<div style="padding:5px; position:relative;"><div class="message private-message-self"><p>' + message + '</p>' + '<time>' + time + '</time></div></div><div class="clearfix"></div>');
@@ -175,17 +177,22 @@ function AddUser(chatHub, id, name) {
     var userId = $('#hdId').val();
     var code = "";
 
-    if (userId == id) {
-        code = $('<div class="loginUser">' + name + "</div>");
+    var users = $(".user");
+
+    //console.log('divUsers: ', users);
+ 
+    for (i = 0; i < users.length; i++) {
+        //console.log('users: ', users[i]);
     }
-    else {
+
+    if (userId != id) {
         code = $('<a id="' + id + '" class="user" >' + name + '<a>');
 
         $(code).click(function () {
             var id = $(this).attr('id');
 
-            if (userId != id)
-                OpenPrivateChatWindow(chatHub, id, name);
+            // TODO - Upon opening a private chat window switch FOCUS to the pm-chat box.
+            OpenPrivateChatWindow(chatHub, id, name);
         });
     }
 
@@ -283,6 +290,7 @@ function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
     AddDivToContainer($div);
 
     // TODO - I believe the added Private Message should append to the left, NOT the right-hand corner
+    // TODO - If multiple boxes are open and one is closed, the other boxes should fill-slide towards the right corner.
     // Move all PM boxes to the right, append one after another
     var rooms = $(".pm-box");
 
@@ -309,7 +317,7 @@ function AddDivToContainer($div) {
 }
 
 // TODO - Maybe throw into another JS file - like a references js file.
-function getCurrentTimeFormatted(format) {
+function getCurrentTimeFormatted(format, hr12) {
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var d = new Date();
@@ -323,6 +331,9 @@ function getCurrentTimeFormatted(format) {
     var date = d.getDate();
     var month = months[d.getMonth()];
     var year = d.getFullYear();
+    if (hr12) {
+        hr = hr > 12 ? hr - 12 : hr;
+    }
 
     switch (format) {
         case 1:
