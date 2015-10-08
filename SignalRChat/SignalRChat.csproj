@@ -91,6 +91,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <None Include="Properties\PublishProfiles\chat.adamschaal.com.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Styles\chat.css" />
     <Content Include="Styles\JQueryUI\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />

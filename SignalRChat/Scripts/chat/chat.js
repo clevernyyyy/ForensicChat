@@ -2,6 +2,7 @@
 });
 
 // TODO - logically sort/separate JS components.
+// TODO - set timeout.
 
 $(function () {
     // this portion is responsible for the actions in the login box (bootstrap alerts)
@@ -140,7 +141,9 @@ function registerClientMethods(chatHub) {
 
         var logOffAlert = $('#divUserDisconnected');
         logOffAlert.html(userName + ' has logged off.')
+        //TODO - if (not login screen) {
         $(logOffAlert).fadeIn(200).delay(2000).fadeOut(200);
+        //}
     }
 
     chatHub.client.messageReceived = function (userName, message) {
@@ -157,11 +160,12 @@ function registerClientMethods(chatHub) {
         var user = $('#hdUserName').val();
 
         // TODO - although this works, it would technically break if we have two users with same username.
+        // TODO - look into if/else with id, not username.
         // console.log('currentUser: ', user, '  fromUser: ', fromUserName);
         if (user === fromUserName) {
-            $('#' + ctrId).find('#divMessage').append('<div style="padding:5px; position:relative;"><div class="message private-message-other"><p>' + message + '</p>' + '<time>' + fromUserName + '<strong> · </strong>' + time + '</time></div></div>');
+            $('#' + ctrId).find('#divMessage').append('<div class="msg-container"><div class="message private-message-other"><p>' + message + '</p>' + '<time>' + fromUserName + '<strong> · </strong>' + time + '</time></div></div>');
         } else {
-            $('#' + ctrId).find('#divMessage').append('<div style="padding:5px; position:relative;"><div class="message private-message-self"><p>' + message + '</p>' + '<time>' + time + '</time></div></div><div class="clearfix"></div>');
+            $('#' + ctrId).find('#divMessage').append('<div class="msg-container"><div class="message private-message-self"><p>' + message + '</p>' + '<time>' + time + '</time></div></div><div class="clearfix"></div>');
         }
 
         // set scrollbar
@@ -173,7 +177,6 @@ function registerClientMethods(chatHub) {
 function AddUser(chatHub, id, name) {
     // TODO - insert alphabetically.  Users won't want random order.
     // TODO - this still seems a little buggy, I've seen a few cases of two users added, but I've been unable to replicate.
-    // TODO - sort current user to the top, maybe throw a <hr> below and make cursor != pointer on current user
     var userId = $('#hdId').val();
     var code = "";
 
@@ -190,8 +193,6 @@ function AddUser(chatHub, id, name) {
 
         $(code).click(function () {
             var id = $(this).attr('id');
-
-            // TODO - Upon opening a private chat window switch FOCUS to the pm-chat box.
             OpenPrivateChatWindow(chatHub, id, name);
         });
     }
@@ -308,6 +309,10 @@ function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
 function AddDivToContainer($div) {
     $('#divContainer').prepend($div);
 
+    var input = $("#txtPrivateMessage");
+    input.focus();
+
+
     // I don't think dragging them is necessary.  If anything, allow rearranging on the bottom line, but don't allow dragging all over screen.
     //$div.draggable({
     //    handle: ".header",
@@ -332,7 +337,11 @@ function getCurrentTimeFormatted(format, hr12) {
     var month = months[d.getMonth()];
     var year = d.getFullYear();
     if (hr12) {
-        hr = hr > 12 ? hr - 12 : hr;
+        if (hr != 0) {
+            hr = hr > 12 ? hr - 12 : hr;
+        } else {
+            hr = 12;
+        }
     }
 
     switch (format) {
