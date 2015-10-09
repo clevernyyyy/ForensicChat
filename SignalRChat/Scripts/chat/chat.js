@@ -68,12 +68,14 @@ function registerEvents(chatHub) {
         }
 
         if (proceedLogin) {
-            if (name.length > 0) {
+            if (html_sanitize(name).trim().length > 0 && html_sanitize(name).trim().length < 15) {
                 chatHub.server.connect(name);
             }
             else {
                 // TODO - bootstrap error notification perhaps instead of alert (ugly)
-                alert("Please enter name");
+                alert("Please enter valid name.  Less than 15 characters without any xss.");
+                $("#txtNickName").val('');
+                $("#txtNickName").focus();
             }
         } else {
             // TODO - error message - didn't download exe
@@ -82,11 +84,16 @@ function registerEvents(chatHub) {
 
     $('#btnSendMsg').click(function () {
         var msg = $("#txtMessage").val();
-        if (msg.length > 0) {
+        if (html_sanitize(msg).trim().length > 0) {
             var userName = $('#hdUserName').val();
-            console.log('isSecureChat: ', isSecureChat);
+            //console.log('isSecureChat: ', isSecureChat);
             chatHub.server.sendMessageToAll(userName, msg, isSecureChat);
             $("#txtMessage").val('');
+        } else {
+            // TODO - alert?
+            alert("Nice try...");
+            $("#txtMessage").val('');
+            $("#txtMessage").focus();
         }
     });
 
@@ -122,7 +129,7 @@ function registerClientMethods(chatHub) {
 
         // Add Existing Messages
         for (i = 0; i < messages.length; i++) {
-            AddMessage(messages[i].UserName, messages[i].Message);
+            //AddMessage(messages[i].UserName, messages[i].Message);
         }
     }
 
@@ -158,14 +165,13 @@ function registerClientMethods(chatHub) {
             createPrivateChatWindow(chatHub, windowId, ctrId, fromUserName);
         }
         var user = $('#hdUserName').val();
-
         // TODO - although this works, it would technically break if we have two users with same username.
         // TODO - look into if/else with id, not username.
         // console.log('currentUser: ', user, '  fromUser: ', fromUserName);
         if (user === fromUserName) {
-            $('#' + ctrId).find('#divMessage').append('<div class="msg-container"><div class="message private-message-other"><p>' + message + '</p>' + '<time>' + fromUserName + '<strong> · </strong>' + time + '</time></div></div>');
-        } else {
             $('#' + ctrId).find('#divMessage').append('<div class="msg-container"><div class="message private-message-self"><p>' + message + '</p>' + '<time>' + time + '</time></div></div><div class="clearfix"></div>');
+        } else {
+            $('#' + ctrId).find('#divMessage').append('<div class="msg-container"><div class="message private-message-other"><p>' + message + '</p>' + '<time>' + fromUserName + '<strong> · </strong>' + time + '</time></div></div>');
         }
 
         // set scrollbar
@@ -180,24 +186,23 @@ function AddUser(chatHub, id, name) {
     var userId = $('#hdId').val();
     var code = "";
 
-    var users = $(".user");
+    //var users = $(".user");
 
-    //console.log('divUsers: ', users);
+    ////console.log('divUsers: ', users);
  
-    for (i = 0; i < users.length; i++) {
-        //console.log('users: ', users[i]);
-    }
+    //for (i = 0; i < users.length; i++) {
+    //    //console.log('users: ', users[i]);
+    //}
 
     if (userId != id) {
-        code = $('<a id="' + id + '" class="user" >' + name + '<a>');
+        code = $('<tr><td id="' + id + '" class="user"><span class="glyphicon glyphicon-stop" aria-hidden="true" style="color:darkgreen; margin-right: 10px; vertical-align:text-top;"></span>' + name + '</td></tr>');
 
         $(code).click(function () {
-            var id = $(this).attr('id');
+            //var id = $(this).attr('id');  I don't think this is needed
             OpenPrivateChatWindow(chatHub, id, name);
         });
     }
-
-    $("#divusers").append(code);
+    $("#tbody-users").append(code);
 }
 
 function AddMessage(userName, message) {
@@ -274,10 +279,15 @@ function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
     $div.find("#btnSendMessage").click(function () {
         $textBox = $div.find("#txtPrivateMessage");
         var msg = $textBox.val();
-        if (msg.length > 0) {
+        if (html_sanitize(msg).trim().length > 0) {
             chatHub.server.sendPrivateMessage(userId, msg);
             $('#chatBox').animate({ scrollTop: $('#chatBox').prop('scrollHeight') });
             $textBox.val('');
+        } else {
+            // TODO - alert?
+            alert("Nice try...");
+            $textBox.val('');
+            $textBox.focus();
         }
     });
 

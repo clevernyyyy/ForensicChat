@@ -27,6 +27,7 @@
         <script src="/signalr/hubs"></script>
 
         <script src="/Scripts/chat/chat.js"></script>
+        <script src="http://caja.appspot.com/html-css-sanitizer-minified.js"></script>
     </head>
 <!-- TODO - unify all classes - i.e. camel case or hyphenated, lower case or what?-->
     <body>
@@ -102,7 +103,7 @@
             <!-- CHAT -->
             <div id="divChat" class="panel panel-info" style="background-color: #f5f5f5;">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Welcome <span id='spanUser'></span>!  Let's get chatting...</h3>
+                    <h3 class="panel-title">Welcome <strong><span id='spanUser'></span></strong>!  Let's get chatting...</h3>
                 </div>
                 <div class="panel-body">
                     <div id="divChatWindow" class="col-xs-10 chatBox">

@@ -2,6 +2,7 @@
 });
 
 // TODO - logically sort/separate JS components.
+// TODO - set timeout.
 
 $(function () {
     // this portion is responsible for the actions in the login box (bootstrap alerts)
@@ -67,12 +68,14 @@ function registerEvents(chatHub) {
         }
 
         if (proceedLogin) {
-            if (name.length > 0) {
+            if (html_sanitize(name).trim().length > 0) {
                 chatHub.server.connect(name);
             }
             else {
                 // TODO - bootstrap error notification perhaps instead of alert (ugly)
-                alert("Please enter name");
+                alert("Please enter valid name");
+                $("#txtNickName").val('');
+                $("#txtNickName").focus();
             }
         } else {
             // TODO - error message - didn't download exe
@@ -81,11 +84,16 @@ function registerEvents(chatHub) {
 
     $('#btnSendMsg').click(function () {
         var msg = $("#txtMessage").val();
-        if (msg.length > 0) {
+        if (html_sanitize(msg).trim().length > 0) {
             var userName = $('#hdUserName').val();
-            console.log('isSecureChat: ', isSecureChat);
+            //console.log('isSecureChat: ', isSecureChat);
             chatHub.server.sendMessageToAll(userName, msg, isSecureChat);
             $("#txtMessage").val('');
+        } else {
+            // TODO - alert?
+            alert("Nice try...");
+            $("#txtMessage").val('');
+            $("#txtMessage").focus();
         }
     });
 
@@ -121,7 +129,7 @@ function registerClientMethods(chatHub) {
 
         // Add Existing Messages
         for (i = 0; i < messages.length; i++) {
-            AddMessage(messages[i].UserName, messages[i].Message);
+            //AddMessage(messages[i].UserName, messages[i].Message);
         }
     }
 
@@ -140,7 +148,9 @@ function registerClientMethods(chatHub) {
 
         var logOffAlert = $('#divUserDisconnected');
         logOffAlert.html(userName + ' has logged off.')
+        //TODO - if (not login screen) {
         $(logOffAlert).fadeIn(200).delay(2000).fadeOut(200);
+        //}
     }
 
     chatHub.client.messageReceived = function (userName, message) {
@@ -271,10 +281,15 @@ function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
     $div.find("#btnSendMessage").click(function () {
         $textBox = $div.find("#txtPrivateMessage");
         var msg = $textBox.val();
-        if (msg.length > 0) {
+        if (html_sanitize(msg).trim().length > 0) {
             chatHub.server.sendPrivateMessage(userId, msg);
             $('#chatBox').animate({ scrollTop: $('#chatBox').prop('scrollHeight') });
             $textBox.val('');
+        } else {
+            // TODO - alert?
+            alert("Nice try...");
+            $textBox.val('');
+            $textBox.focus();
         }
     });
 
