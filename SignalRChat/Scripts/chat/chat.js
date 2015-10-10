@@ -41,11 +41,11 @@ $(function () {
 function setScreen(isLogin) {
     if (!isLogin) {
         $("#divChat").hide();
-        $("#divLogin").show();
+        $("#divHomePage").show();
     }
     else {
         $("#divChat").show();
-        $("#divLogin").hide();
+        $("#divHomePage").hide();
     }
 }
 
@@ -107,6 +107,17 @@ function registerEvents(chatHub) {
         if (e.which == 13) {
             $('#btnSendMsg').click();
         }
+    });
+
+    $('#btnLogout').click(function () {
+        var userName = $('#hdUserName').val();
+        var id = $('#hdId').val();
+        console.log('userName: ', userName, '   id:  ', id);
+        $('#' + id).remove();
+        var ctrId = 'private_' + id;
+        $('#' + ctrId).remove();
+        console.log('ch_server: ', chatHub.server);
+        chatHub.server.disconnect(id, userName);
     });
 }
 
@@ -195,7 +206,11 @@ function AddUser(chatHub, id, name) {
     //}
 
     if (userId != id) {
-        code = $('<tr><td id="' + id + '" class="user"><span class="glyphicon glyphicon-stop" aria-hidden="true" style="color:darkgreen; margin-right: 10px; vertical-align:text-top;"></span>' + name + '</td></tr>');
+        code = $('<tr><td id="' + id + '" class="user">' + 
+            '<span class="glyphicon glyphicon-comment user-status green" aria-hidden="true"></span>' +
+            '<span class="glyphicon glyphicon-comment user-status yellow hidden" aria-hidden="true"></span>' +
+            '<span class="glyphicon glyphicon-comment user-status red hidden" aria-hidden="true"></span>' +
+            name + '</td></tr>');
 
         $(code).click(function () {
             //var id = $(this).attr('id');  I don't think this is needed

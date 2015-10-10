@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title></title>
+        <title>ForensiChat</title>
 
         <link type="text/css" rel="stylesheet" href="Styles/chat.css" />
         <link href="/Content/bootstrap.min.css" rel="stylesheet" />
@@ -106,10 +106,14 @@
                     <h3 class="panel-title">Welcome <strong><span id='spanUser'></span></strong>!  Let's get chatting...</h3>
                 </div>
                 <div class="panel-body">
-                    <div id="divChatWindow" class="col-xs-10 chatBox">
+                    <div id="divChatWindow" class="col-xs-9 chatBox">
                     </div>
-                    <div id="divusers" class="col-xs-2 user-box">
+                    <div id="divusers" class="col-xs-3 user-box" style="font-size:12px;">
                         <div class="user-heading">Contacts</div>
+                        <table class="table table-condensed table-bordered table-hover">
+                            <tbody id="tbody-users">
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="panel-footer"> <!-- style="background-color: #d9edf7;">  (Match Header)-->

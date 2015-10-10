@@ -34,6 +34,18 @@ namespace SignalRChat
             }
         }
 
+        public void Disconnect(string userId, string userName)
+        {
+            var msg = "";
+            var id = Context.ConnectionId;
+            var user = Context.User;
+
+            // compose msg
+            msg += id;
+
+            LogMessageToFile(msg, "logout", "Logout.txt");
+        }
+
         public void SendMessageToAll(string userName, string message, bool secureChat)
         {
             if (!secureChat) {
@@ -86,6 +98,54 @@ namespace SignalRChat
             if (CurrentMessage.Count > 100)
                 CurrentMessage.RemoveAt(0);
         }
+        #endregion
+
+        #region logging
+
+        public void LogMessageToFile(string msg, string log, string file)
+        {
+
+            System.IO.StreamWriter sw = System.IO.File.AppendText(
+                GetTempPath(msg, log, file));
+            try
+            {
+                string logLine = System.String.Format(
+                    "{0:G}: {1}.", System.DateTime.Now, msg);
+                sw.WriteLine(logLine);
+            }
+            finally
+            {
+                sw.Close();
+            }
+        }
+
+        public string GetTempPath(string msg, string log, string file)
+        {
+            var path = "";
+            switch (log.ToLower())
+            {
+                case "logout":
+                    path = "C:/Users/clevernyyyy/Desktop/";
+                    break;
+                case "error":
+                    path = "C:/Users/clevernyyyy/Desktop/";
+                    break;
+                default:
+                    InvalidCommand(msg, log);
+                    break;
+            }
+
+            path += @file;
+            return path;
+        }
+
+        public void InvalidCommand(string msg, string log)
+        {
+            msg += "  log: ";
+            msg += log;
+            GetTempPath(msg, "error", "Errors.txt");
+        }
+
         #endregion
     }
 }

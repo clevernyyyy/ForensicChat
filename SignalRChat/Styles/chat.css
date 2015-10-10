@@ -16,23 +16,25 @@
 
 .login
 {
-    width: 250px;
     margin-left: auto;
     margin-right: auto;
-    padding: 10px;
-    border: solid 2px #7698B7;
-    color: #1e4638;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+    /*text-align: center;*/
 }
-
+    .login .login-box {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border: solid 2px #7698B7;
+        color: #1e4638;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        width: 250px;
+    }
     .login .textBox
     {
         width: 240px;
     }
-
-
     .login #divButton
     {
         padding: 4px;
@@ -56,12 +58,22 @@
     overflow-x:hidden;
     height:300px;
 }
+
+/**
+    NAV-BAR
+**/
 .navbar-center
 {
     position:absolute;
     left:49%;
     color: #9d9d9d;
 }
+.settings {
+    font-size: x-large;
+    top: 6px !important;
+    color: #9d9d9d;
+}
+
 
 /**
     USER BOX
@@ -87,6 +99,20 @@
 table, td {
    width: 100%;
 }
+.user-status {
+    margin-right: 10px;
+    vertical-align: text-top;
+    font-size: medium;
+}
+    .user .green {
+        color:green;
+    }
+    .user .yellow {
+        color:goldenrod;
+    }
+    .user .red {
+        color:darkred;
+    }
 
 /**
     LOGIN BOX
