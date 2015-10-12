@@ -42,10 +42,12 @@ function setScreen(isLogin) {
     if (!isLogin) {
         $("#divChat").hide();
         $("#divHomePage").show();
+        $("#settings-glyph").addClass("hidden");
     }
     else {
         $("#divChat").show();
         $("#divHomePage").hide();
+        $("#settings-glyph").removeClass("hidden");
     }
 }
 
@@ -68,12 +70,12 @@ function registerEvents(chatHub) {
         }
 
         if (proceedLogin) {
-            if (html_sanitize(name).trim().length > 0 && html_sanitize(name).trim().length < 15) {
+            if (html_sanitize(name).trim().length > 0 && html_sanitize(name).trim().length < 14) {
                 chatHub.server.connect(name);
             }
             else {
                 // TODO - bootstrap error notification perhaps instead of alert (ugly)
-                alert("Please enter valid name.  Less than 15 characters without any xss.");
+                alert("Please enter valid name.  Less than 14 characters without any xss.");
                 $("#txtNickName").val('');
                 $("#txtNickName").focus();
             }
@@ -117,6 +119,8 @@ function registerEvents(chatHub) {
         var ctrId = 'private_' + id;
         $('#' + ctrId).remove();
         console.log('ch_server: ', chatHub.server);
+        // TODO - move login separate from chat?
+        window.location.href = "/index.html";   // sketchy way to get this to work for now.
         chatHub.server.disconnect(id, userName);
     });
 }

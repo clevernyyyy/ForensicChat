@@ -43,6 +43,9 @@ namespace SignalRChat
             // compose msg
             msg += id;
 
+            // TODO - actually disconnect the user
+            // TODO - open exe file
+
             LogMessageToFile(msg, "logout", "Logout.txt");
         }
 
