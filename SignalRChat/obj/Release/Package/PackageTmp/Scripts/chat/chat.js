@@ -41,11 +41,13 @@ $(function () {
 function setScreen(isLogin) {
     if (!isLogin) {
         $("#divChat").hide();
-        $("#divLogin").show();
+        $("#divHomePage").show();
+        $("#settings-glyph").addClass("hidden");
     }
     else {
         $("#divChat").show();
-        $("#divLogin").hide();
+        $("#divHomePage").hide();
+        $("#settings-glyph").removeClass("hidden");
     }
 }
 
@@ -68,12 +70,12 @@ function registerEvents(chatHub) {
         }
 
         if (proceedLogin) {
-            if (html_sanitize(name).trim().length > 0 && html_sanitize(name).trim().length < 15) {
+            if (html_sanitize(name).trim().length > 0 && html_sanitize(name).trim().length < 14) {
                 chatHub.server.connect(name);
             }
             else {
                 // TODO - bootstrap error notification perhaps instead of alert (ugly)
-                alert("Please enter valid name.  Less than 15 characters without any xss.");
+                alert("Please enter valid name.  Less than 14 characters without any xss.");
                 $("#txtNickName").val('');
                 $("#txtNickName").focus();
             }
@@ -107,6 +109,19 @@ function registerEvents(chatHub) {
         if (e.which == 13) {
             $('#btnSendMsg').click();
         }
+    });
+
+    $('#btnLogout').click(function () {
+        var userName = $('#hdUserName').val();
+        var id = $('#hdId').val();
+        console.log('userName: ', userName, '   id:  ', id);
+        $('#' + id).remove();
+        var ctrId = 'private_' + id;
+        $('#' + ctrId).remove();
+        console.log('ch_server: ', chatHub.server);
+        // TODO - move login separate from chat?
+        window.location.href = "/index.html";   // sketchy way to get this to work for now.
+        chatHub.server.disconnect(id, userName);
     });
 }
 
@@ -195,7 +210,11 @@ function AddUser(chatHub, id, name) {
     //}
 
     if (userId != id) {
-        code = $('<tr><td id="' + id + '" class="user"><span class="glyphicon glyphicon-stop" aria-hidden="true" style="color:darkgreen; margin-right: 10px; vertical-align:text-top;"></span>' + name + '</td></tr>');
+        code = $('<tr><td id="' + id + '" class="user">' + 
+            '<span class="glyphicon glyphicon-comment user-status green" aria-hidden="true"></span>' +
+            '<span class="glyphicon glyphicon-comment user-status yellow hidden" aria-hidden="true"></span>' +
+            '<span class="glyphicon glyphicon-comment user-status red hidden" aria-hidden="true"></span>' +
+            name + '</td></tr>');
 
         $(code).click(function () {
             //var id = $(this).attr('id');  I don't think this is needed

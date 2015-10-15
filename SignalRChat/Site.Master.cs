@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SignalRChat.Forms
+namespace SignalRChat
 {
-    public partial class Chat : System.Web.UI.Page
+    public partial class Site : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -93,9 +93,9 @@
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\chat.adamschaal.com.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Forms\Chat.aspx" />
-    <Content Include="Forms\Index.aspx" />
+    <Content Include="Forms\Layout.aspx" />
     <Content Include="Forms\Login.aspx" />
+    <Content Include="Forms\Test.aspx" />
     <Content Include="Styles\chat.css" />
     <Content Include="Styles\JQueryUI\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Styles\JQueryUI\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -242,19 +242,12 @@
     <Compile Include="ChatHub.cs" />
     <Compile Include="Common\MessageDetail.cs" />
     <Compile Include="Common\UserDetail.cs" />
-    <Compile Include="Forms\Chat.aspx.cs">
-      <DependentUpon>Chat.aspx</DependentUpon>
+    <Compile Include="Forms\Layout.aspx.cs">
+      <DependentUpon>Layout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Forms\Chat.aspx.designer.cs">
-      <DependentUpon>Chat.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Forms\Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
+    <Compile Include="Forms\Layout.aspx.designer.cs">
+      <DependentUpon>Layout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -263,14 +256,29 @@
     <Compile Include="Forms\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="Site.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
