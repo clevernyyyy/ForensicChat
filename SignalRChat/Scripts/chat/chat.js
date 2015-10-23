@@ -1,4 +1,8 @@
 ﻿$(document).ready(function () {
+    // Disable console
+    // $.connection.chatHub.server.sendMessageToAll('hey', 'what', 0);
+
+
 });
 
 // TODO - logically sort/separate JS components.
@@ -38,6 +42,18 @@ $(function () {
         registerEvents(chatHub);
     });
 
+    $('.more-info').click(function () {
+        $('.login').css('width', '50%');
+        $('.more-info-box').css('width', '50%');
+        $('#anchor-more-info').hide();
+        $('#anchor-hide-info').show();
+    });
+    $('.hide-info').click(function () {
+        $('.login').css('width', '100%');
+        $('.more-info-box').css('width', '0px');
+        $('#anchor-more-info').show();
+        $('#anchor-hide-info').hide();
+    });
 });
 
 function setScreen(isLogin) {
@@ -130,11 +146,14 @@ function registerEvents(chatHub) {
             var path = '';
             //open path
             alert('this is where I will call the file.');
+            chatHub.server.disconnect(id, userName);
+            window.open('', '_self').close();
         }
 
         // TODO - move login separate from chat?
-        window.location.href = "/index.html";   // sketchy way to get this to work for now.
-        chatHub.server.disconnect(id, userName);
+       // window.location.href = "/index.html";   // sketchy way to get this to work for now.
+        //chatHub.server.disconnect(id, userName);
+        open(location, '_self').close();
     });
 }
 

@@ -32,7 +32,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
     <File Include="bin/SignalRChat.dll">
-      <publishTime>10/12/2015 00:37:21</publishTime>
+      <publishTime>10/14/2015 22:46:34</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>10/02/2015 11:36:46</publishTime>
@@ -73,8 +73,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Forms/Index.aspx">
       <publishTime>10/11/2015 01:08:46</publishTime>
     </File>
+    <File Include="Forms/Layout.aspx">
+      <publishTime>10/12/2015 01:14:18</publishTime>
+    </File>
     <File Include="Forms/Login.aspx">
-      <publishTime>10/11/2015 01:11:49</publishTime>
+      <publishTime>10/13/2015 00:13:15</publishTime>
+    </File>
+    <File Include="Forms/Test.aspx">
+      <publishTime>10/12/2015 02:27:30</publishTime>
     </File>
     <File Include="Global.asax">
       <publishTime>10/02/2015 11:36:47</publishTime>
@@ -83,7 +89,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
     <File Include="index.html">
-      <publishTime>10/11/2015 21:17:18</publishTime>
+      <publishTime>10/12/2015 17:19:53</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>10/02/2015 11:36:47</publishTime>
@@ -95,7 +101,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
     <File Include="Scripts/chat/chat.js">
-      <publishTime>10/11/2015 21:19:44</publishTime>
+      <publishTime>10/19/2015 20:44:36</publishTime>
     </File>
     <File Include="Scripts/jquery-1.9.1.js">
       <publishTime>10/02/2015 11:36:47</publishTime>
@@ -130,8 +136,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/ui/jquery.ui.widget.js">
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
+    <File Include="Site.Master">
+      <publishTime>10/12/2015 17:34:06</publishTime>
+    </File>
     <File Include="Styles/chat.css">
-      <publishTime>10/10/2015 03:17:16</publishTime>
+      <publishTime>10/13/2015 01:12:04</publishTime>
     </File>
     <File Include="Styles/JQueryUI/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>10/02/2015 11:36:47</publishTime>

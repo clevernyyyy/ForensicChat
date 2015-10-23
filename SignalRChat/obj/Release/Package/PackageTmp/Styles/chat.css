@@ -13,35 +13,6 @@
     color: #1e4638;
     font-size: 24px;
 }
-
-.login
-{
-    margin-left: auto;
-    margin-right: auto;
-    /*text-align: center;*/
-}
-    .login .login-box {
-        margin-left: auto;
-        margin-right: auto;
-        padding: 10px;
-        border: solid 2px #7698B7;
-        color: #1e4638;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-        width: 250px;
-    }
-    .login .textBox
-    {
-        width: 240px;
-    }
-    .login #divButton
-    {
-        padding: 4px;
-        padding-bottom: 0px;
-        text-align: right;
-    }
-
 .disconnect
 {
     position: absolute;
@@ -154,6 +125,37 @@ table, td {
 .toc-close {
     top: 3px !important;
 }
+
+.login
+{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%;
+    /*text-align: center;*/
+    display: inline-block;
+}
+    .login .login-box {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 10px;
+        border: solid 2px #7698B7;
+        color: #1e4638;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        width: 250px;
+    }
+    .login .textBox
+    {
+        width: 240px;
+    }
+    .login #divButton
+    {
+        padding: 4px;
+        padding-bottom: 0px;
+        text-align: right;
+    }
+
 
 /**
     PRIVATE MESSAGES

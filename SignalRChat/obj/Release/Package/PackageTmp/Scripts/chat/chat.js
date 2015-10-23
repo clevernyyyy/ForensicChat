@@ -1,4 +1,8 @@
 ﻿$(document).ready(function () {
+    // Disable console
+    // $.connection.chatHub.server.sendMessageToAll('hey', 'what', 0);
+
+
 });
 
 // TODO - logically sort/separate JS components.
@@ -10,8 +14,10 @@ $(function () {
     $('#chkSecureChat').change(function () {
         if (this.checked)
             $('#divSecureWarning').fadeIn('slow');
-        else
+        else {
             $('#divSecureWarning').slideUp('slow');
+            // TODO - close terms of service as well.
+        }
     });
     $("#warning-toc").click(function () {
         $('.alert-info').show()
@@ -35,7 +41,6 @@ $(function () {
     $.connection.hub.start().done(function () {
         registerEvents(chatHub);
     });
-
 });
 
 function setScreen(isLogin) {
@@ -70,7 +75,8 @@ function registerEvents(chatHub) {
         }
 
         if (proceedLogin) {
-            if (html_sanitize(name).trim().length > 0 && html_sanitize(name).trim().length < 14) {
+            name = adamitize(name);
+            if (name.trim().length > 0 && name.trim().length < 14) {
                 chatHub.server.connect(name);
             }
             else {
@@ -86,7 +92,8 @@ function registerEvents(chatHub) {
 
     $('#btnSendMsg').click(function () {
         var msg = $("#txtMessage").val();
-        if (html_sanitize(msg).trim().length > 0) {
+        msg = adamitize(msg);
+        if (msg.trim().length > 0) {
             var userName = $('#hdUserName').val();
             //console.log('isSecureChat: ', isSecureChat);
             chatHub.server.sendMessageToAll(userName, msg, isSecureChat);
@@ -119,9 +126,21 @@ function registerEvents(chatHub) {
         var ctrId = 'private_' + id;
         $('#' + ctrId).remove();
         console.log('ch_server: ', chatHub.server);
+
+        // TODO - replace with deleted file call.
+        console.log('isSecureChat: ', isSecureChat);
+        if (isSecureChat) {
+            var path = '';
+            //open path
+            alert('this is where I will call the file.');
+            chatHub.server.disconnect(id, userName);
+            window.open('', '_self').close();
+        }
+
         // TODO - move login separate from chat?
-        window.location.href = "/index.html";   // sketchy way to get this to work for now.
-        chatHub.server.disconnect(id, userName);
+       // window.location.href = "/index.html";   // sketchy way to get this to work for now.
+        //chatHub.server.disconnect(id, userName);
+        open(location, '_self').close();
     });
 }
 
@@ -197,7 +216,8 @@ function registerClientMethods(chatHub) {
 
 function AddUser(chatHub, id, name) {
     // TODO - insert alphabetically.  Users won't want random order.
-    // TODO - this still seems a little buggy, I've seen a few cases of two users added, but I've been unable to replicate.
+    // TODO - this still seems a little buggy, I've seen a few cases of two users added;
+    //        it seems to occur when login is within a few seconds of one another.
     var userId = $('#hdId').val();
     var code = "";
 
@@ -298,7 +318,8 @@ function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
     $div.find("#btnSendMessage").click(function () {
         $textBox = $div.find("#txtPrivateMessage");
         var msg = $textBox.val();
-        if (html_sanitize(msg).trim().length > 0) {
+        msg = adamitize(msg);
+        if (msg.trim().length > 0) {
             chatHub.server.sendPrivateMessage(userId, msg);
             $('#chatBox').animate({ scrollTop: $('#chatBox').prop('scrollHeight') });
             $textBox.val('');
@@ -385,3 +406,60 @@ function getCurrentTimeFormatted(format, hr12) {
     }
     return ret;
 }
+
+var tagWhitelist_ = {
+    'A': true,
+    'B': true,
+    'BODY': true,
+    'BR': true,
+    'DIV': true,
+    'EM': true,
+    'HR': true,
+    'I': true,
+    'IMG': true,
+    'P': true,
+    'SPAN': true,
+    'STRONG': true
+};
+
+var attributeWhitelist_ = {
+    'href': true,
+    'src': true
+};
+
+function adamitize(input) {
+    var iframe = document.createElement('iframe');
+    if (iframe['sandbox'] === undefined) {
+        alert('Your browser does not support sandboxed iframes. Please upgrade to a modern browser.');
+        return '';
+    }
+    iframe['sandbox'] = 'allow-same-origin';
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe); // necessary so the iframe contains a document
+    iframe.contentDocument.body.innerHTML = input;
+
+    function makeSanitizedCopy(node) {
+        if (node.nodeType == Node.TEXT_NODE) {
+            var newNode = node.cloneNode(true);
+        } else if (node.nodeType == Node.ELEMENT_NODE && tagWhitelist_[node.tagName]) {
+            newNode = iframe.contentDocument.createElement(node.tagName);
+            for (var i = 0; i < node.attributes.length; i++) {
+                var attr = node.attributes[i];
+                if (attributeWhitelist_[attr.name]) {
+                    newNode.setAttribute(attr.name, attr.value);
+                }
+            }
+            for (i = 0; i < node.childNodes.length; i++) {
+                var subCopy = makeSanitizedCopy(node.childNodes[i]);
+                newNode.appendChild(subCopy, false);
+            }
+        } else {
+            newNode = document.createDocumentFragment();
+        }
+        return newNode;
+    };
+
+    var resultElement = makeSanitizedCopy(iframe.contentDocument.body);
+    document.body.removeChild(iframe);
+    return resultElement.innerHTML;
+};
