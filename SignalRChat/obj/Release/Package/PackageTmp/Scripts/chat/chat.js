@@ -41,17 +41,32 @@ $(function () {
     $.connection.hub.start().done(function () {
         registerEvents(chatHub);
     });
+
+    $('.more-info').click(function () {
+        $('.login').css('width', '50%');
+        $('.more-info-box').css('width', '50%');
+        $('#anchor-more-info').hide();
+        $('#anchor-hide-info').show();
+    });
+    $('.hide-info').click(function () {
+        $('.login').css('width', '100%');
+        $('.more-info-box').css('width', '0px');
+        $('#anchor-more-info').show();
+        $('#anchor-hide-info').hide();
+    });
 });
 
 function setScreen(isLogin) {
     if (!isLogin) {
         $("#divChat").hide();
-        $("#divHomePage").show();
+        $("#divLogin").show();
+        $("#divMoreInfo").show();
         $("#settings-glyph").addClass("hidden");
     }
     else {
         $("#divChat").show();
-        $("#divHomePage").hide();
+        $("#divLogin").hide();
+        $("#divMoreInfo").hide();
         $("#settings-glyph").removeClass("hidden");
     }
 }

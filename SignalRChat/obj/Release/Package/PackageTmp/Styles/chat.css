@@ -27,7 +27,7 @@
     border-right: 1px solid lightgray;
     overflow-y: auto;
     overflow-x:hidden;
-    height:300px;
+    height:400px;
 }
 
 /**
@@ -43,6 +43,38 @@
     font-size: x-large;
     top: 6px !important;
     color: #9d9d9d;
+}
+.wolfpack {
+  position: relative;
+  background: #ecf1f2;
+  color: #222;
+  padding: 4px 20px;
+  top: 0px;
+  height:100%;
+  left: -1px;
+}
+.wolfpack:before {
+  background: #222;
+  color: #ecf1f2;
+  content: attr( data-text);
+  overflow: hidden;
+  position: absolute;
+  top: 0px;
+  height:100%;
+  left: 0;
+  padding: 4px 20px;
+    -webkit-clip-path: polygon(0 0, 69% 0%, 59% 100%, 0% 100%);
+  clip-path: polygon(0 0, 69% 0%, 59% 100%, 0% 100%);
+}
+.navbar-header .wolfpack {
+  font-family: sans-serif;
+  font-weight: 700;
+  display: flex;
+  font-size: 34px;
+}
+.navbar-header .wolfpack:hover {
+    text-decoration: none;
+    color: #000;
 }
 
 
@@ -92,6 +124,7 @@ table, td {
     margin-top: 15px; 
     margin-bottom: 10px !important;
     padding: 10px !important;
+    white-space: normal;
 }
 .warning-ul {
     margin: 5px 0px 0px 8px;
@@ -108,9 +141,10 @@ table, td {
     font-size: 11px;
     cursor: pointer;
 }
-.info-box {
+.toc-box {
     margin-bottom: 10px !important;
     padding: 10px !important;
+    white-space: normal;
 }
 .toc-glyphs {
     cursor: pointer;
@@ -130,8 +164,7 @@ table, td {
 {
     margin-left: auto;
     margin-right: auto;
-    margin-top: 20%;
-    /*text-align: center;*/
+    margin-top: 5%;
     display: inline-block;
 }
     .login .login-box {
@@ -155,7 +188,62 @@ table, td {
         padding-bottom: 0px;
         text-align: right;
     }
+.wrapper {
+    display:inline-block;
+    height: auto;
+    width:100%;
+}
 
+.more-info, .hide-info {
+    cursor:pointer;
+}
+
+.contents, .contents .login, .contents .more-info-box {
+    display:inline-block;
+}
+
+.contents {
+    white-space:nowrap;
+    margin-left: -1em;
+    padding-left: 1em;
+    width: 100%;
+}
+
+.contents .login {
+    width:100%;
+    overflow:hidden;
+    -webkit-transition: width 500ms ease-in-out;
+    -moz-transition: width 500ms ease-in-out;
+    -o-transition: width 500ms ease-in-out;
+    transition: width 500ms ease-in-out;
+}
+
+.contents .more-info-box {
+    width:0%;
+    height:90%;
+    position:absolute;
+    overflow:hidden;
+    -webkit-transition: width 500ms ease-in-out;
+    -moz-transition: width 500ms ease-in-out;
+    -o-transition: width 500ms ease-in-out;
+    transition: width 500ms ease-in-out;
+}
+.more-info-header {
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    margin-bottom: 25px;
+}
+.more-info-content {
+    font-family: sans-serif;
+    margin: 0px 20px;
+}
+.more-info-instructions {
+    font-weight: 500;
+    font-size: 30px;
+}
 
 /**
     PRIVATE MESSAGES

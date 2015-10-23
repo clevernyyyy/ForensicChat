@@ -241,8 +241,8 @@ table, td {
     margin: 0px 20px;
 }
 .more-info-instructions {
-    font-weight: 500;
-    font-size: 30px;
+    font-size: 17px;
+    white-space: normal;
 }
 
 /**

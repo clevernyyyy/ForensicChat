@@ -60,11 +60,13 @@ function setScreen(isLogin) {
     if (!isLogin) {
         $("#divChat").hide();
         $("#divLogin").show();
+        $("#divMoreInfo").show();
         $("#settings-glyph").addClass("hidden");
     }
     else {
         $("#divChat").show();
         $("#divLogin").hide();
+        $("#divMoreInfo").hide();
         $("#settings-glyph").removeClass("hidden");
     }
 }
