@@ -59,12 +59,12 @@ $(function () {
 function setScreen(isLogin) {
     if (!isLogin) {
         $("#divChat").hide();
-        $("#divHomePage").show();
+        $("#divLogin").show();
         $("#settings-glyph").addClass("hidden");
     }
     else {
         $("#divChat").show();
-        $("#divHomePage").hide();
+        $("#divLogin").hide();
         $("#settings-glyph").removeClass("hidden");
     }
 }
