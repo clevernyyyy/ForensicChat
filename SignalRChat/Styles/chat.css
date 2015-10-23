@@ -185,7 +185,44 @@ table, td {
         padding-bottom: 0px;
         text-align: right;
     }
+.wrapper {
+    display:inline-block;
+    height: auto;
+    width:100%;
+}
 
+.more-info, .hide-info {
+    cursor:pointer;
+}
+
+.contents, .contents .login, .contents .more-info-box {
+    display:inline-block;
+}
+
+.contents {
+    white-space:nowrap;
+    margin-left: -1em;
+    padding-left: 1em;
+    width: 100%;
+}
+
+.contents .login {
+    width:100%;
+    overflow:hidden;
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
+
+.contents .more-info-box {
+    width:0%;
+    overflow:hidden;
+    -webkit-transition: width 1s ease-in-out;
+    -moz-transition: width 1s ease-in-out;
+    -o-transition: width 1s ease-in-out;
+    transition: width 1s ease-in-out;
+}
 
 /**
     PRIVATE MESSAGES
@@ -357,54 +394,3 @@ table, td {
            margin-left:4px;
            width: 55px;
         }
-
-
-
-
-/**
-    .NET
-*/
-.wrapper {
-    display:inline-block;
-    height: auto;
-    width:100%;
-}
-
-.more-info, .hide-info {
-    cursor:pointer;
-}
-
-.contents, .contents .login, .contents .more-info-box {
-    display:inline-block;
-}
-
-.contents {
-    white-space:nowrap;
-    margin-left: -1em;
-    padding-left: 1em;
-    width: 100%;
-}
-
-.contents .login {
-    width:100%;
-    overflow:hidden;
-    -webkit-transition: width 1s ease-in-out;
-    -moz-transition: width 1s ease-in-out;
-    -o-transition: width 1s ease-in-out;
-    transition: width 1s ease-in-out;
-}
-
-.contents .more-info-box {
-    width:0%;
-    overflow:hidden;
-    -webkit-transition: width 1s ease-in-out;
-    -moz-transition: width 1s ease-in-out;
-    -o-transition: width 1s ease-in-out;
-    transition: width 1s ease-in-out;
-}
-/*.wrapper:hover .contents .login {
-    width:50%;
-}
-.wrapper:hover .contents .more-info-box {
-    width:50%;
-}*/
