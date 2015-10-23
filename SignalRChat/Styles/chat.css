@@ -27,7 +27,7 @@
     border-right: 1px solid lightgray;
     overflow-y: auto;
     overflow-x:hidden;
-    height:300px;
+    height:400px;
 }
 
 /**
@@ -212,19 +212,37 @@ table, td {
 .contents .login {
     width:100%;
     overflow:hidden;
-    -webkit-transition: width 1s ease-in-out;
-    -moz-transition: width 1s ease-in-out;
-    -o-transition: width 1s ease-in-out;
-    transition: width 1s ease-in-out;
+    -webkit-transition: width 500ms ease-in-out;
+    -moz-transition: width 500ms ease-in-out;
+    -o-transition: width 500ms ease-in-out;
+    transition: width 500ms ease-in-out;
 }
 
 .contents .more-info-box {
     width:0%;
+    height:90%;
+    position:absolute;
     overflow:hidden;
-    -webkit-transition: width 1s ease-in-out;
-    -moz-transition: width 1s ease-in-out;
-    -o-transition: width 1s ease-in-out;
-    transition: width 1s ease-in-out;
+    -webkit-transition: width 500ms ease-in-out;
+    -moz-transition: width 500ms ease-in-out;
+    -o-transition: width 500ms ease-in-out;
+    transition: width 500ms ease-in-out;
+}
+.more-info-header {
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    margin-bottom: 25px;
+}
+.more-info-content {
+    font-family: sans-serif;
+    margin: 0px 20px;
+}
+.more-info-instructions {
+    font-weight: 500;
+    font-size: 30px;
 }
 
 /**
