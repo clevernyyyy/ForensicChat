@@ -21,8 +21,6 @@
     padding: 4px;
     border: solid 1px red;
 }
-
-
 .chatBox{
     border-right: 1px solid lightgray;
     overflow-y: auto;

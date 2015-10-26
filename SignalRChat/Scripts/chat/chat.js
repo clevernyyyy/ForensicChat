@@ -54,6 +54,9 @@ $(function () {
         $('#anchor-more-info').show();
         $('#anchor-hide-info').hide();
     });
+
+    // For tooltips
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 function setScreen(isLogin) {
@@ -62,12 +65,14 @@ function setScreen(isLogin) {
         $("#divLogin").show();
         $("#divMoreInfo").show();
         $("#settings-glyph").addClass("hidden");
+        $("#btnLogout").hide();
     }
     else {
         $("#divChat").show();
         $("#divLogin").hide();
         $("#divMoreInfo").hide();
         $("#settings-glyph").removeClass("hidden");
+        $("#btnLogout").show();
     }
 }
 
@@ -153,8 +158,8 @@ function registerEvents(chatHub) {
         }
 
         // TODO - move login separate from chat?
-       // window.location.href = "/index.html";   // sketchy way to get this to work for now.
-        //chatHub.server.disconnect(id, userName);
+        window.location.href = "/index.html";   // sketchy way to get this to work for now.
+        chatHub.server.disconnect(id, userName);
         open(location, '_self').close();
     });
 }
