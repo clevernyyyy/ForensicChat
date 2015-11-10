@@ -56,13 +56,15 @@
                             <a id="settings-glyph" href="#" class="dropdown-toggle hidden" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="settings" class="glyphicon glyphicon-cog settings"></span></a>
                             <ul class="dropdown-menu">
                                 <!-- TODO fill this out, maybe throw in some glyphs check and x, make one click toggle -->
-                                <li><a href="#">Sound</a></li>
-                                <li><a href="#">Logging</a></li>
-                                <li><a href="#">Something else here</a></li>
+                                <li>
+                                    <a id="sound-anchor" class="toggleSound" href="#">
+                                        <span id="sound-on" class="li-settings-glyph glyphicon glyphicon-ok-circle" style="color:green;"></span>
+                                        <span id="sound-off" class="li-settings-glyph glyphicon glyphicon-remove-circle hidden" style="color:red;"></span>
+                                        Sound
+                                    </a>
+                                </li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
+                                <li><a href="#" class="disableClick">Logging (Developer Only)</a></li>
                             </ul>
                         </div>
                         <button id="btnLogout" type="button" class="btn btn-primary" style="margin-left:20px;">Logout</button>
@@ -178,6 +180,7 @@
 
             <input id="hdId" type="hidden" />
             <input id="hdUserName" type="hidden" />
+            <input id="hdSound" type="hidden" />
         </div>
     </body>
 </html>

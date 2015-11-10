@@ -32,7 +32,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
     <File Include="bin/SignalRChat.dll">
-      <publishTime>11/01/2015 14:24:35</publishTime>
+      <publishTime>11/09/2015 18:58:20</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>10/02/2015 11:36:46</publishTime>
@@ -92,7 +92,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2015 14:21:47</publishTime>
     </File>
     <File Include="index.html">
-      <publishTime>11/01/2015 14:23:54</publishTime>
+      <publishTime>11/09/2015 18:25:11</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>10/02/2015 11:36:47</publishTime>
@@ -104,13 +104,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
     <File Include="Scripts/chat/chat.js">
-      <publishTime>11/01/2015 13:47:31</publishTime>
+      <publishTime>11/09/2015 18:51:04</publishTime>
     </File>
     <File Include="Scripts/chat/hide-show.js">
-      <publishTime>10/26/2015 18:41:13</publishTime>
+      <publishTime>11/09/2015 18:35:54</publishTime>
     </File>
     <File Include="Scripts/chat/utils.js">
-      <publishTime>10/26/2015 18:40:38</publishTime>
+      <publishTime>11/02/2015 15:48:23</publishTime>
     </File>
     <File Include="Scripts/chat/xss.js">
       <publishTime>10/26/2015 18:40:32</publishTime>
@@ -151,8 +151,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Site.Master">
       <publishTime>10/12/2015 17:34:06</publishTime>
     </File>
+    <File Include="Sounds/new_message_alert.wav">
+      <publishTime>11/02/2015 22:18:40</publishTime>
+    </File>
+    <File Include="Sounds/user_logout_alert.aiff">
+      <publishTime>11/02/2015 22:28:15</publishTime>
+    </File>
     <File Include="Styles/chat.css">
-      <publishTime>11/01/2015 13:36:27</publishTime>
+      <publishTime>11/02/2015 23:52:33</publishTime>
     </File>
     <File Include="Styles/JQueryUI/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>10/02/2015 11:36:47</publishTime>

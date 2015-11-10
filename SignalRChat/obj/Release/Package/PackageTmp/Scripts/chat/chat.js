@@ -8,11 +8,21 @@ $(function () {
     // Declare a proxy to reference the hub. 
     var chatHub = $.connection.chatHub;
 
+    // Declare sound as true initially
+    $('#hdSound').val(true);
+
     registerClientMethods(chatHub);
 
     // Start Hub
     $.connection.hub.start().done(function () {
         registerEvents(chatHub);
+    });
+
+    $('#sound-anchor').click(function () {
+        var isSoundOn = $('#hdSound').val();
+        console.log('isSound1: ', isSoundOn);
+        $('#hdSound').val(setSound(isSoundOn));
+        console.log('isSound2: ', $('#hdSound').val());
     });
 });
 
@@ -140,8 +150,14 @@ function registerClientMethods(chatHub) {
         var ctrId = 'private_' + id;
         $('#' + ctrId).remove();
 
+        if ($('#hdSound').val() === "true") {
+            var snd = new Audio("Sounds/user_logout_alert.aiff"); // buffers automatically when created
+            snd.play();
+        }
+
         var logOffAlert = $('#divUserDisconnected');
         logOffAlert.html(userName + ' has logged off.')
+
         //TODO - if (not login screen) {
         $(logOffAlert).fadeIn(200).delay(2000).fadeOut(200);
         //}
@@ -166,6 +182,10 @@ function registerClientMethods(chatHub) {
             $('#' + ctrId).find('#divMessage').append('<div class="msg-container"><div class="message private-message-self"><p>' + message + '</p>' + '<time>' + time + '</time></div></div><div class="clearfix"></div>');
         } else {
             $('#' + ctrId).find('#divMessage').append('<div class="msg-container"><div class="message private-message-other"><p>' + message + '</p>' + '<time>' + fromUserName + '<strong> · </strong>' + time + '</time></div></div>');
+            if ($('#hdSound').val() === "true") {
+                var snd = new Audio("Sounds/new_message_alert.wav"); // buffers automatically when created
+                snd.play();
+            }
         }
 
         // set scrollbar

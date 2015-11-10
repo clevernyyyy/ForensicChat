@@ -20,9 +20,8 @@ $(function () {
 
     $('#sound-anchor').click(function () {
         var isSoundOn = $('#hdSound').val();
-        console.log('isSound1: ', isSoundOn);
         $('#hdSound').val(setSound(isSoundOn));
-        console.log('isSound2: ', $('#hdSound').val());
+        event.stopPropagation();
     });
 });
 

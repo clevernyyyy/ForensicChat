@@ -39,6 +39,20 @@
     $('[data-toggle="tooltip"]').tooltip();
 });
 
+function setSound(isSoundOn) {
+    var retIsSound;
+    if (isSoundOn === "true") {
+        $('#sound-on').addClass("hidden");;
+        $('#sound-off').removeClass("hidden");;
+        retIsSound = false;
+    } else {
+        $('#sound-on').removeClass("hidden");;
+        $('#sound-off').addClass("hidden");;
+        retIsSound = true;
+    }
+    return retIsSound;
+}
+
 function setScreen(isLogin) {
     if (!isLogin) {
         $("#divChat").hide();
