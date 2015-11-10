@@ -96,6 +96,12 @@
     <Content Include="Forms\Layout.aspx" />
     <Content Include="Forms\Login.aspx" />
     <Content Include="Forms\Test.aspx" />
+    <Content Include="Images\favicon.ico" />
+    <Content Include="Scripts\chat\hide-show.js" />
+    <Content Include="Scripts\chat\utils.js" />
+    <Content Include="Scripts\chat\xss.js" />
+    <Content Include="Sounds\new_message_alert.wav" />
+    <Content Include="Sounds\user_logout_alert.aiff" />
     <Content Include="Styles\chat.css" />
     <Content Include="Styles\JQueryUI\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Styles\JQueryUI\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />

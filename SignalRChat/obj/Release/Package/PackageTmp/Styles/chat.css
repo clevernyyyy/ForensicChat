@@ -21,8 +21,6 @@
     padding: 4px;
     border: solid 1px red;
 }
-
-
 .chatBox{
     border-right: 1px solid lightgray;
     overflow-y: auto;
@@ -228,6 +226,7 @@ table, td {
     -o-transition: width 500ms ease-in-out;
     transition: width 500ms ease-in-out;
 }
+/** TODO - create media queries, these should be shrinking as width decreases. **/
 .more-info-header {
     font-weight: 700;
     display: flex;
@@ -241,10 +240,12 @@ table, td {
     margin: 0px 20px;
 }
 .more-info-instructions {
-    font-weight: 500;
-    font-size: 30px;
+    font-size: 17px;
+    white-space: normal;
 }
-
+.more-info-blurb {
+    font-size:20px;
+}
 /**
     PRIVATE MESSAGES
 **/
@@ -276,6 +277,9 @@ table, td {
 .pm-box {
     width: 250px;
     margin-right:10px;
+}
+.pm-header {
+    cursor: pointer;
 }
 .private-message-self {
     justify-content: flex-end;

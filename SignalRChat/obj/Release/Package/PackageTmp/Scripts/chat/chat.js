@@ -1,37 +1,10 @@
-﻿$(document).ready(function () {
+﻿//$(document).ready(function () {
     // Disable console
     // $.connection.chatHub.server.sendMessageToAll('hey', 'what', 0);
+//});
 
-
-});
-
-// TODO - logically sort/separate JS components.
 // TODO - set timeout.
-
 $(function () {
-    // this portion is responsible for the actions in the login box (bootstrap alerts)
-    // it must be ready upon document load
-    $('#chkSecureChat').change(function () {
-        if (this.checked)
-            $('#divSecureWarning').fadeIn('slow');
-        else {
-            $('#divSecureWarning').slideUp('slow');
-            // TODO - close terms of service as well.
-        }
-    });
-    $("#warning-toc").click(function () {
-        $('.alert-info').show()
-    });
-    $("[data-hide]").on("click", function () {
-        $(this).closest("." + $(this).attr("data-hide")).hide();
-    });
-
-    setScreen(false);
-
-    // Calculating margin-left to align it to center;
-    var width = $('.navbar-center').width();
-    $('.navbar-center').css('margin-left', '-' + (width / 2) + 'px');
-
     // Declare a proxy to reference the hub. 
     var chatHub = $.connection.chatHub;
 
@@ -41,35 +14,7 @@ $(function () {
     $.connection.hub.start().done(function () {
         registerEvents(chatHub);
     });
-
-    $('.more-info').click(function () {
-        $('.login').css('width', '50%');
-        $('.more-info-box').css('width', '50%');
-        $('#anchor-more-info').hide();
-        $('#anchor-hide-info').show();
-    });
-    $('.hide-info').click(function () {
-        $('.login').css('width', '100%');
-        $('.more-info-box').css('width', '0px');
-        $('#anchor-more-info').show();
-        $('#anchor-hide-info').hide();
-    });
 });
-
-function setScreen(isLogin) {
-    if (!isLogin) {
-        $("#divChat").hide();
-        $("#divLogin").show();
-        $("#divMoreInfo").show();
-        $("#settings-glyph").addClass("hidden");
-    }
-    else {
-        $("#divChat").show();
-        $("#divLogin").hide();
-        $("#divMoreInfo").hide();
-        $("#settings-glyph").removeClass("hidden");
-    }
-}
 
 function registerEvents(chatHub) {
     var isSecureChat = false;
@@ -153,8 +98,8 @@ function registerEvents(chatHub) {
         }
 
         // TODO - move login separate from chat?
-       // window.location.href = "/index.html";   // sketchy way to get this to work for now.
-        //chatHub.server.disconnect(id, userName);
+        window.location.href = "/index.html";   // sketchy way to get this to work for now.
+        chatHub.server.disconnect(id, userName);
         open(location, '_self').close();
     });
 }
@@ -278,7 +223,7 @@ function OpenPrivateChatWindow(chatHub, id, userName) {
 
 function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
     var div = '<div id="' + ctrId + '" class="draggable pm-box" rel="0">' +
-               '<div class="header">' +
+               '<div id="pm-head" class="header">' +
                   '<div style="float:right;">' +
                       '<a id="popup-pm" class="pm-glyphs pm-glyphs-blue hidden"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a>' +
                       '<a id="minimize-pm" class="pm-glyphs pm-glyphs-blue"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>' +
@@ -308,7 +253,7 @@ function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
 
     // Minimize Private Message
     // TODO - When minimized and we receive a new message, flash the header (or something).
-    $div.find('#minimize-pm').click(function () {
+    $div.find('#minimize-pm').click(function (ev) {
         // toggle the glyphs
         $(this).addClass('hidden');
         $div.find('#popup-pm').removeClass('hidden');
@@ -316,10 +261,14 @@ function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
         // hide messaging content
         $('.pm-message-' + ctrId).hide();
         $('.pm-sendbar-' + ctrId).hide();
+
+        // add class to show cursor
+        $div.find('#pm-head').addClass('pm-header');
+        ev.stopPropagation();
     });
 
     // PopUp Private Message
-    $div.find('#popup-pm').click(function () {
+    $div.find('#popup-pm').click(function (ev) {
         // toggle the glyphs
         $(this).addClass('hidden');
         $div.find('#minimize-pm').removeClass('hidden');
@@ -327,6 +276,25 @@ function createPrivateChatWindow(chatHub, userId, ctrId, userName) {
         // hide messaging content
         $('.pm-message-' + ctrId).show();
         $('.pm-sendbar-' + ctrId).show();
+
+        // hide class to show cursor
+        $div.find('#pm-head').removeClass('pm-header');
+        ev.stopPropagation();
+    });
+
+    // Popup Private Message if header's clicked on when minimized.
+    $div.find('#pm-head').click(function () {
+        if ($div.find('#minimize-pm')[0].classList.contains('hidden')) {
+            $div.find('#minimize-pm').removeClass('hidden');
+            $div.find('#popup-pm').addClass('hidden');
+
+            // hide messaging content
+            $('.pm-message-' + ctrId).show();
+            $('.pm-sendbar-' + ctrId).show();
+
+            // hide class to show cursor
+            $div.find('#pm-head').removeClass('pm-header');
+        }
     });
 
     // Send Button event
@@ -385,96 +353,3 @@ function AddDivToContainer($div) {
     //    }
     //});
 }
-
-// TODO - Maybe throw into another JS file - like a references js file.
-function getCurrentTimeFormatted(format, hr12) {
-    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    var d = new Date();
-    var day = days[d.getDay()];
-    var hr = d.getHours();
-    var min = d.getMinutes();
-    if (min < 10) {
-        min = "0" + min;
-    }
-    var ampm = hr < 12 ? "am" : "pm";
-    var date = d.getDate();
-    var month = months[d.getMonth()];
-    var year = d.getFullYear();
-    if (hr12) {
-        if (hr != 0) {
-            hr = hr > 12 ? hr - 12 : hr;
-        } else {
-            hr = 12;
-        }
-    }
-
-    switch (format) {
-        case 1:
-            ret = hr + ":" + min + ampm + "<strong> · </strong>" + date + " " + month + " " + year;
-            break;
-        case 2:
-            ret = hr + ":" + min + ampm;
-            break;
-        default:
-            ret = day + " " + hr + ":" + min + ampm + " " + date + " " + month + " " + year;
-    }
-    return ret;
-}
-
-var tagWhitelist_ = {
-    'A': true,
-    'B': true,
-    'BODY': true,
-    'BR': true,
-    'DIV': true,
-    'EM': true,
-    'HR': true,
-    'I': true,
-    'IMG': true,
-    'P': true,
-    'SPAN': true,
-    'STRONG': true
-};
-
-var attributeWhitelist_ = {
-    'href': true,
-    'src': true
-};
-
-function adamitize(input) {
-    var iframe = document.createElement('iframe');
-    if (iframe['sandbox'] === undefined) {
-        alert('Your browser does not support sandboxed iframes. Please upgrade to a modern browser.');
-        return '';
-    }
-    iframe['sandbox'] = 'allow-same-origin';
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe); // necessary so the iframe contains a document
-    iframe.contentDocument.body.innerHTML = input;
-
-    function makeSanitizedCopy(node) {
-        if (node.nodeType == Node.TEXT_NODE) {
-            var newNode = node.cloneNode(true);
-        } else if (node.nodeType == Node.ELEMENT_NODE && tagWhitelist_[node.tagName]) {
-            newNode = iframe.contentDocument.createElement(node.tagName);
-            for (var i = 0; i < node.attributes.length; i++) {
-                var attr = node.attributes[i];
-                if (attributeWhitelist_[attr.name]) {
-                    newNode.setAttribute(attr.name, attr.value);
-                }
-            }
-            for (i = 0; i < node.childNodes.length; i++) {
-                var subCopy = makeSanitizedCopy(node.childNodes[i]);
-                newNode.appendChild(subCopy, false);
-            }
-        } else {
-            newNode = document.createDocumentFragment();
-        }
-        return newNode;
-    };
-
-    var resultElement = makeSanitizedCopy(iframe.contentDocument.body);
-    document.body.removeChild(iframe);
-    return resultElement.innerHTML;
-};

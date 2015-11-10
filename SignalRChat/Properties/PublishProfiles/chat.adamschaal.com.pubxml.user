@@ -32,7 +32,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
     <File Include="bin/SignalRChat.dll">
-      <publishTime>10/14/2015 22:46:34</publishTime>
+      <publishTime>11/01/2015 14:24:35</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>10/02/2015 11:36:46</publishTime>
@@ -88,8 +88,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Images/delete.png">
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
+    <File Include="Images/favicon.ico">
+      <publishTime>11/01/2015 14:21:47</publishTime>
+    </File>
     <File Include="index.html">
-      <publishTime>10/23/2015 01:18:04</publishTime>
+      <publishTime>11/01/2015 14:23:54</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>10/02/2015 11:36:47</publishTime>
@@ -101,7 +104,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
     <File Include="Scripts/chat/chat.js">
-      <publishTime>10/23/2015 01:26:44</publishTime>
+      <publishTime>11/01/2015 13:47:31</publishTime>
+    </File>
+    <File Include="Scripts/chat/hide-show.js">
+      <publishTime>10/26/2015 18:41:13</publishTime>
+    </File>
+    <File Include="Scripts/chat/utils.js">
+      <publishTime>10/26/2015 18:40:38</publishTime>
+    </File>
+    <File Include="Scripts/chat/xss.js">
+      <publishTime>10/26/2015 18:40:32</publishTime>
     </File>
     <File Include="Scripts/jquery-1.9.1.js">
       <publishTime>10/02/2015 11:36:47</publishTime>
@@ -140,7 +152,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/12/2015 17:34:06</publishTime>
     </File>
     <File Include="Styles/chat.css">
-      <publishTime>10/23/2015 01:18:43</publishTime>
+      <publishTime>11/01/2015 13:36:27</publishTime>
     </File>
     <File Include="Styles/JQueryUI/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>10/02/2015 11:36:47</publishTime>
