@@ -1,0 +1,134 @@
+Bookmarks -	
+	Saves as readable text file. Contains checksum (md5?) so uhm lets hope no one bookmarks this page. To replace would require more time.
+
+Bookmarks.bak -
+	Created after I added chat.adamschaal.com to bookmarks.. though is not a backup of the current bookmark. Maybe stores one previous iteration? Not sure yet.
+
+ChromeDWriteFontCache -
+	Not really readable. Contains some information when viewed in hxd but nothing too obvious to me right away. Skipping.
+
+Cookies - SQLITE
+	Gives error because of malformed schema like "Error malformed database schema (is_transient) - near "where": syntax error:"
+	
+	Not aware of any cookies chat.adamschaal.com saves anyways....
+
+Cookies-journal -
+	IDK Another non readable format. Some items contain journals.
+
+Current Session - 
+	Similar to above. Delete or replace with Clean slate
+
+Current Tabs - 
+	This contains strings of tabs that are readable using a hex editor so in plaintext. Delete or replace with blank tabs.
+
+Extension Cookies - SQLITE
+	Similar format to Cookies. Skipping because we aren't an extension.
+
+Extension Cookies-Journal -
+	Another journal file. Skipping for more than one reason.
+
+Favicons - SQLITE
+	Contains urls. Will play the remove game on this one.
+
+History - SQLITE
+	Must close chrome or you can't modify history with sql. A way to get around this is to copy the file elsewhere and then replace it with that one. This could leave more artifacts you would want to cover up. 
+
+
+History Provider Cache - Data
+	Shows evidence in the 
+
+Last Session - 
+	Same as current session..lets delete it
+
+Last Tabs - 
+	Same..
+
+Login Data - SQLITE
+	Has data for passwords saved in chrome. So I deleted them.
+	
+Login Data-journal - 
+	Classic journal file
+
+Network Action Predictor - SQLITE
+	Uses this to guess what you want to visit in the url.
+	Will delete first table in db, can't find out how to populate other areas of the db.
+
+Network Action Predictor-journal
+	Journal
+
+Network Persisten State - 
+	Ascii readable file
+	Contains urls, but all pertain to google. Don't see a need to delete this one at the moment.
+
+Origin Bound Certs - SQLITE
+	Contains some private and public key information
+	All appear to be coming from google so no need to delete at the moment.
+
+Origin Bound Certs-journal - 
+	Journal
+
+Preferences
+	Pretty cool acsii readable file
+	Not going to mess with it, its pretty lengthy
+
+Quota Manager - SQLITE
+	Contains urls, but not very many at all.
+	Might come back to it.
+
+Quota Manager-journal -
+	Journal
+
+Secure Preferences -
+	Another cool readable file
+	Definitely skipping
+	Would only be cool if it was easy to replace with other preferences
+
+Shortcuts - SQLITE
+	Deleted found urls
+
+Shortcuts-Journal -
+	Journal
+
+
+
+Top Sites - SQLITE
+	Sites most visted? Idk but has url so I removed it.
+
+
+Top Sites - Journal
+	Journal
+
+TransportSecurity -
+	Readable format
+	Not going to worry about it
+
+
+Visted Links - 
+	Anything you click on in a link. Stored in a hashing table. If you search for a link you just clicked on "http://example.com", can be checked to identify if it was clicked on or not. Using https://github.com/JRBANCEL/Chromagnon.
+
+	Found in C:\Users\steal\AppData\Local\Google\Chrome\User Data\Default\Visited Links
+
+Web Data - SQLITE
+	Some autofill material it appears.
+	Skipping because it doesn't contain adamschaal. 
+
+Web Data-journal
+	Journal
+
+WebRTCIdentityStore - SQLITE
+	Only contains one url.
+	Skipping.
+
+WebRTCIdentityStore-journal
+	Journal
+
+
+	
+
+
+
+
+
+Cache - Quite difficult to breakdown. See https://github.com/JRBANCEL/Chromagnon for the only python program I could find that can sort through it. Would be much harder to delete individual items. Should just remove entire file.
+
+
