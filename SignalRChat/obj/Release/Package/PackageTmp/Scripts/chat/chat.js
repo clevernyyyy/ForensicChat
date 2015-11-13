@@ -18,11 +18,10 @@ $(function () {
         registerEvents(chatHub);
     });
 
-    $('#sound-anchor').click(function () {
+    $('#sound-anchor').click(function (event) {
         var isSoundOn = $('#hdSound').val();
-        console.log('isSound1: ', isSoundOn);
         $('#hdSound').val(setSound(isSoundOn));
-        console.log('isSound2: ', $('#hdSound').val());
+        event.stopPropagation();
     });
 });
 

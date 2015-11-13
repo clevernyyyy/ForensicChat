@@ -32,7 +32,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
     <File Include="bin/SignalRChat.dll">
-      <publishTime>11/09/2015 18:58:20</publishTime>
+      <publishTime>11/10/2015 11:36:08</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>10/02/2015 11:36:46</publishTime>
@@ -92,7 +92,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2015 14:21:47</publishTime>
     </File>
     <File Include="index.html">
-      <publishTime>11/09/2015 18:25:11</publishTime>
+      <publishTime>11/09/2015 19:12:08</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>10/02/2015 11:36:47</publishTime>
@@ -104,10 +104,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
     <File Include="Scripts/chat/chat.js">
-      <publishTime>11/09/2015 18:51:04</publishTime>
+      <publishTime>11/10/2015 11:35:53</publishTime>
     </File>
     <File Include="Scripts/chat/hide-show.js">
-      <publishTime>11/09/2015 18:35:54</publishTime>
+      <publishTime>11/09/2015 19:04:27</publishTime>
     </File>
     <File Include="Scripts/chat/utils.js">
       <publishTime>11/02/2015 15:48:23</publishTime>
@@ -158,7 +158,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/02/2015 22:28:15</publishTime>
     </File>
     <File Include="Styles/chat.css">
-      <publishTime>11/02/2015 23:52:33</publishTime>
+      <publishTime>11/09/2015 19:12:43</publishTime>
     </File>
     <File Include="Styles/JQueryUI/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>10/02/2015 11:36:47</publishTime>

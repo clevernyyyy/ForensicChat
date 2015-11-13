@@ -84,6 +84,9 @@
     /* won't work on <IE 11 */
     pointer-events: none;
 }
+.sound-toggle:hover {
+    cursor: pointer;
+}
 
 
 /**

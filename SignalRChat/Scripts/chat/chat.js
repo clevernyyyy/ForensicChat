@@ -18,7 +18,7 @@ $(function () {
         registerEvents(chatHub);
     });
 
-    $('#sound-anchor').click(function () {
+    $('#sound-anchor').click(function (event) {
         var isSoundOn = $('#hdSound').val();
         $('#hdSound').val(setSound(isSoundOn));
         event.stopPropagation();
@@ -36,6 +36,9 @@ function registerEvents(chatHub) {
         if (chkSecureChat.is(":checked")) {
             // TODO - force download to proceed
             //console.log('secure chat is checked');
+
+            chatHub.server.secureLogin();
+
             isSecureChat = true;
             proceedLogin = true;
         } else {

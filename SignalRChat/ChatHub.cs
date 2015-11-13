@@ -34,6 +34,24 @@ namespace SignalRChat
             }
         }
 
+        public void SecureLogin()
+        {
+            string userPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            string downloadPath = (userPath + "\\Downloads\\test.txt");
+
+            if (System.IO.File.Exists(downloadPath))
+            {
+                Console.WriteLine("The executable is downloaded.");
+            }
+            else
+            {
+                Console.WriteLine("The executable is not downloaded.");
+            }
+
+
+            LogMessageToFile(downloadPath, "logout", "Logout.txt");
+        }
+
         public void Disconnect(string userId, string userName)
         {
             var msg = "";
@@ -45,6 +63,10 @@ namespace SignalRChat
 
             // TODO - actually disconnect the user
             // TODO - open exe file
+
+            var uip = GetUser_IP();
+
+            msg += uip;
 
             LogMessageToFile(msg, "logout", "Logout.txt");
         }
@@ -103,6 +125,23 @@ namespace SignalRChat
         }
         #endregion
 
+        #region logout
+        protected string GetUser_IP()
+        {
+            string VisitorsIPAddr = string.Empty;
+            if (HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"] != null)
+            {
+                VisitorsIPAddr = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"].ToString();
+            }
+            else if (HttpContext.Current.Request.UserHostAddress.Length != 0)
+            {
+                VisitorsIPAddr = HttpContext.Current.Request.UserHostAddress;
+            }
+            return VisitorsIPAddr;
+        }
+        #endregion
+
+
         #region logging
 
         public void LogMessageToFile(string msg, string log, string file)
@@ -125,6 +164,8 @@ namespace SignalRChat
         public string GetTempPath(string msg, string log, string file)
         {
             var path = "";
+
+            string path2 = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             switch (log.ToLower())
             {
                 case "logout":
