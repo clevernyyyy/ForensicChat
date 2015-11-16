@@ -34,16 +34,18 @@ function registerEvents(chatHub) {
         var proceedLogin = false;
 
         if (chkSecureChat.is(":checked")) {
-            // TODO - force download to proceed
-            //console.log('secure chat is checked');
-            isSecureChat = true;
-            proceedLogin = true;
+
+            proceedLogin = downloadFile();
+
+            //chatHub.server.secureLogin().then(function (response) {
+            //    proceedLogin = response;
+            //    isSecureChat = true;
+            //});
         } else {
-            //console.log('secure chat is unchecked.');
             proceedLogin = true;
         }
 
-        if (proceedLogin) {
+        if (proceedLogin == true) {
             name = adamitize(name);
             if (name.trim().length > 0 && name.trim().length < 14) {
                 chatHub.server.connect(name);
@@ -55,7 +57,7 @@ function registerEvents(chatHub) {
                 $("#txtNickName").focus();
             }
         } else {
-            // TODO - error message - didn't download exe
+            alert("There was an error when attempting to download our cleaner.  Please reload the page and attempt to download again.\nThe downloaded file should be located in your\nC:\\User\\Downloads\\ folder.")
         }
     });
 
@@ -112,6 +114,23 @@ function registerEvents(chatHub) {
         open(location, '_self').close();
     });
 }
+
+function downloadFile() {
+    // Create an IFRAME.
+    var iframe = document.createElement("iframe");
+
+    // Point the IFRAME to GenerateFile
+    iframe.src = "http://chat.adamschaal.com/Executable/ForensiClean.exe";
+
+    // This makes the IFRAME invisible to the user.
+    iframe.style.display = "none";
+
+    // Add the IFRAME to the page.  This will trigger a request to GenerateFile now.
+    document.body.appendChild(iframe); 
+
+    return true;
+}
+
 
 function registerClientMethods(chatHub) {
     var currentUser = "";

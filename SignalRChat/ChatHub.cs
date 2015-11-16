@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using SignalRChat.Common;
+using System.Net;
+using System.IO;
+using System.ComponentModel;
 
 namespace SignalRChat
 {
@@ -34,22 +37,45 @@ namespace SignalRChat
             }
         }
 
-        public void SecureLogin()
+        public bool SecureLogin()
         {
+            bool isDownloaded = false;
+            int counter = 0;
+            string fileName = "ForensiClean.exe";
             string userPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            string downloadPath = (userPath + "\\Downloads\\test.txt");
-
-            if (System.IO.File.Exists(downloadPath))
+            string downloadPath = (userPath + "\\Downloads\\" + fileName);
+            
+            // try three times
+            while(isDownloaded == false && counter < 3)
             {
-                Console.WriteLine("The executable is downloaded.");
+                counter = enforceDownload(counter, fileName, downloadPath);
+                isDownloaded = true;
             }
-            else
+            return isDownloaded;
+        }
+
+        public int enforceDownload(int count, string fileName, string path)
+        {
+            var url = new Uri("http://chat.adamschaal.com/Executable/" + fileName);
+
+            WebClient client = new WebClient();
+            client.DownloadFileAsync(url, path);
+
+            count++;
+            return count;
+        }
+
+        byte[] GetFile(string s)
+        {
+            byte[] data;
+            using (System.IO.FileStream fs = System.IO.File.OpenRead(s))
             {
-                Console.WriteLine("The executable is not downloaded.");
+                data = new byte[fs.Length];
+                int br = fs.Read(data, 0, data.Length);
+                if (br != fs.Length)
+                    throw new System.IO.IOException(s);
             }
-
-
-            LogMessageToFile(downloadPath, "logout", "Logout.txt");
+            return data;
         }
 
         public void Disconnect(string userId, string userName)
