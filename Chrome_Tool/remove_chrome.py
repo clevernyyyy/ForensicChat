@@ -401,7 +401,43 @@ def kill_chrome():
 	os.system("taskkill /F /IM chrome.exe")
 
 
+def fix_crash(u):
+	replacements = {'Crashed':'Normal'}
+
+	p = 'C:\Users\%s\AppData\Local\Google\Chrome\User Data\Default\Preferences' % (u)
+
+	a,m = get_a_m(p)	
+
+	lines = []
+	with open(p) as infile:
+	    for line in infile:
+	        for src, target in replacements.iteritems():
+	            line = line.replace(src, target)
+	        lines.append(line)
+
+	print lines
+	with open(p, 'w') as outfile:
+	    for line in lines:
+	    	outfile.write(line)
+
+
+	change_a_m(a,m,p)
+
+
+def rm_visited(u):
+
+	if os.path.exists('C:\Users\%s\AppData\Local\Google\Chrome\User Data\Default\Visted Links' % (u)):
+		os.remove('C:\Users\%s\AppData\Local\Google\Chrome\User Data\Default\Visted Links' % (u))
+		print 'Last Session removed'
+
+	else:
+		print 'Last Session file was already removed or does not exist'
+
+
+
 u = getpass.getuser()
+
+
 
 x = raw_input("What URL would you like to erase from Chrome?\n" + 
 			  "Currently we erase:\n" +
@@ -417,11 +453,13 @@ x = raw_input("What URL would you like to erase from Chrome?\n" +
 			  "   Last Session\n" +
 			  "   Bookmarks\n" +
 			  "   Bookmarks.bak\n" +
+			  "	  Visted Links\n" + 
 			  "\nThe URL you want to delete probably contains: ")
 
 
 
 kill_chrome()
+fix_crash(u)
 del_hist(x,u)
 del_Topsite(x,u)
 del_Favicons(x,u)
@@ -435,4 +473,5 @@ rm_LastSession(u)
 rm_bookmarks(u)
 rm_Cache(u)
 rm_autofill(u)
+rm_visited(u)
 #del_Cookies(x,u)
