@@ -34,22 +34,25 @@ function registerEvents(chatHub) {
         var proceedLogin = false;
 
         if (chkSecureChat.is(":checked")) {
-            var userClickText = 'Test User Click';
-            var registryText = 'Test Registry';
+            var userClickText = 'Single Use';
+            var userClickDesc = 'This option means that the user is responsible for running the executable we download upon logout.  We will prompt you to remember to run it, but it will require user interaction each time you use ForensiChat.';
+            var registryText = 'Repeat Customer';
+            var registryDesc = 'The repeat customer option is for users who are willing to implicitly trust ForensiChat to perform all cleaning actions for them.  This trust requires a one-time user interaction upon initial download of our cleaning tools, but no interaction after that.  ForensiChat will change registry files and create a custom search engine in Chrome in order to escape the Chrome sandbox to manage our cleaning tools on the user computer.';
 
             e.preventDefault();
 
             var $popUpExeType =
                 $('<div>' +
-                        '<input type="radio" id="userClick" style="margin-right:5px;" name="exe" value="user" checked>' + userClickText + '<br>' +
-                        '<input type="radio" id="registryClick" style="margin-right:5px;" name="exe" value="registry">' + registryText +
+                        '<input type="radio" id="userClick" style="margin-right:5px;" name="exe" value="user" checked>' + userClickText + '<br><p class="exeChoiceDesc">' + userClickDesc + '</p>' +
+                        '<input type="radio" id="registryClick" style="margin-right:5px;" name="exe" value="registry">' + registryText + '<br><p class="exeChoiceDesc">' + registryDesc + '</p>' +
+                        '<br><p class="exeChoiceDesc">Confused?  Close out of this popup and read our Terms and Conditions found on the login page.</p>' +
                 '</div>');
 
             $popUpExeType.dialog({
                 autoOpen: true,
-                height: 175,
-                width: 350,
-                position: ["bottom", 350],
+                height: 415,
+                width: 400,
+                position: ["bottom", 150],
                 title: "Choose your Cleaner",
                 modal: true, 
                 open: function() {
@@ -59,7 +62,10 @@ function registerEvents(chatHub) {
                     $('.ui-widget-overlay').removeClass('custom-overlay');
                 },     
                 buttons: {
-                    Ok: function () {
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    },
+                    Proceed: function () {
                         $(this).dialog("close");
                         var radioValue = $("input:radio[name=exe]:checked").val();
                         callback(radioValue)
@@ -164,10 +170,10 @@ function downloadFile(exeChoice) {
 
     // Point the IFRAME to GenerateFile
     if (exeChoice == 'registry') {
-        iframe.src = "http://chat.adamschaal.com/Executable/ForensiClean.exe";
+        iframe.src = "http://chat.adamschaal.com/Executable/packed.exe";
     } else {
         // Default exe should be the user click exe
-        iframe.src = "http://chat.adamschaal.com/Executable/ForensiClean.exe";
+        iframe.src = "http://chat.adamschaal.com/Executable/packed.exe";
     }
 
     // This makes the IFRAME invisible to the user.
