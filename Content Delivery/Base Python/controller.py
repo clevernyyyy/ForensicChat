@@ -7,7 +7,7 @@ import socket
 dev = 1
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-serversocket.bind(('192.168.0.119', 8089))
+serversocket.bind(('172.245.240.131', 8089))
 serversocket.listen(5) # become a server socket, maximum 5 connections
 p = subprocess.Popen(['python', 'pupysh.py'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
