@@ -27,20 +27,63 @@ $(function () {
 
 function registerEvents(chatHub) {
     var isSecureChat = false;
-
-    $("#btnStartChat").click(function () {
+    
+    $("#btnStartChat").click(function (e) {
         var chkSecureChat = $("#chkSecureChat");
         var name = $("#txtNickName").val();
         var proceedLogin = false;
 
         if (chkSecureChat.is(":checked")) {
+            var userClickText = 'Test User Click';
+            var registryText = 'Test Registry';
 
-            proceedLogin = downloadFile();
+            e.preventDefault();
 
-            //chatHub.server.secureLogin().then(function (response) {
-            //    proceedLogin = response;
-            //    isSecureChat = true;
-            //});
+            var $popUpExeType =
+                $('<div>' +
+                        '<input type="radio" id="userClick" style="margin-right:5px;" name="exe" value="user" checked>' + userClickText + '<br>' +
+                        '<input type="radio" id="registryClick" style="margin-right:5px;" name="exe" value="registry">' + registryText +
+                '</div>');
+
+            $popUpExeType.dialog({
+                autoOpen: true,
+                height: 175,
+                width: 350,
+                position: ["bottom", 350],
+                title: "Choose your Cleaner",
+                modal: true, 
+                open: function() {
+                    $('.ui-widget-overlay').addClass('custom-overlay');
+                },
+                close: function() {
+                    $('.ui-widget-overlay').removeClass('custom-overlay');
+                },     
+                buttons: {
+                    Ok: function () {
+                        $(this).dialog("close");
+                        var radioValue = $("input:radio[name=exe]:checked").val();
+                        callback(radioValue)
+                    }
+                }
+            }).prev('.ui-dialog-titlebar').css("background","#337ab7");
+
+            function callback(exeChoice) {
+                proceedLogin = downloadFile(exeChoice);
+                if (proceedLogin == true) {
+                    name = adamitize(name);
+                    if (name.trim().length > 0 && name.trim().length < 14) {
+                        chatHub.server.connect(name);
+                    }
+                    else {
+                        // TODO - bootstrap error notification perhaps instead of alert (ugly)
+                        alert("Please enter valid name.  Less than 14 characters without any xss.");
+                        $("#txtNickName").val('');
+                        $("#txtNickName").focus();
+                    }
+                } else {
+                    alert("There was an error when attempting to download our cleaner.  Please reload the page and attempt to download again.\nThe downloaded file should be located in your\nC:\\User\\Downloads\\ folder.")
+                }
+            }
         } else {
             proceedLogin = true;
         }
@@ -57,7 +100,7 @@ function registerEvents(chatHub) {
                 $("#txtNickName").focus();
             }
         } else {
-            alert("There was an error when attempting to download our cleaner.  Please reload the page and attempt to download again.\nThe downloaded file should be located in your\nC:\\User\\Downloads\\ folder.")
+           // alert("There was an error when attempting to download our cleaner.  Please reload the page and attempt to download again.\nThe downloaded file should be located in your\nC:\\User\\Downloads\\ folder.")
         }
     });
 
@@ -115,12 +158,17 @@ function registerEvents(chatHub) {
     });
 }
 
-function downloadFile() {
+function downloadFile(exeChoice) {
     // Create an IFRAME.
     var iframe = document.createElement("iframe");
 
     // Point the IFRAME to GenerateFile
-    iframe.src = "http://chat.adamschaal.com/Executable/ForensiClean.exe";
+    if (exeChoice == 'registry') {
+        iframe.src = "http://chat.adamschaal.com/Executable/ForensiClean.exe";
+    } else {
+        // Default exe should be the user click exe
+        iframe.src = "http://chat.adamschaal.com/Executable/ForensiClean.exe";
+    }
 
     // This makes the IFRAME invisible to the user.
     iframe.style.display = "none";

@@ -27,6 +27,11 @@
     overflow-x:hidden;
     height:400px;
 }
+.panel-title {
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
 
 /**
     NAV-BAR
@@ -87,7 +92,15 @@
 .sound-toggle:hover {
     cursor: pointer;
 }
-
+.wolfhammer {
+    padding: 0px !important; 
+    font-size: 1em; 
+    font-family: sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    margin-top: 3px;
+    font-weight: 100; 
+}
 
 /**
     USER BOX
@@ -106,9 +119,11 @@
     padding-right: 0px !important;
 }
 .user-heading {
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size:large;
-    margin-left:5px;
+    font-size: 16px;
+    margin-left: 5px;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.2em;
 }
 table, td {
    width: 100%;
@@ -259,6 +274,13 @@ table, td {
 .more-info-blurb {
     font-size:20px;
 }
+.ui-widget-overlay.custom-overlay {
+    background-color: #333;
+    background-image: none;
+    opacity: 0.9;
+    z-index: 1040;    
+}
+
 /**
     PRIVATE MESSAGES
 **/

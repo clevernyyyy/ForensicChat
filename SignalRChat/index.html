@@ -20,6 +20,8 @@
         <script src="/Scripts/ui/jquery.ui.mouse.js"></script>
         <script src="/Scripts/ui/jquery.ui.draggable.js"></script>
         <script src="/Scripts/ui/jquery.ui.resizable.js"></script>
+        <script src="Scripts/ui/jquery.ui.dialog.js"></script>
+        <script src="Scripts/ui/jquery-ui.js"></script>
 
         <!--Reference the SignalR library. -->
         <script src="/Scripts/jquery.signalR-1.0.0.js"></script>
@@ -132,17 +134,26 @@
                             <p><strong>PROJECT SPECIFICS:</strong> Specifically, we will remove traces of access to the chat application and only the chat application from your computer.  The computer's forensic history will appear to be unaltered, which is important when performing clandestine rendezvous.</p>
                             <p><strong>FORENSIC METHODS:</strong> Team Wolfhammer uses several forensic methods to clear traces of accessing ForesniChat off a user's computer.  These methods include:</p>
                             <ol type="1">
-                                <li>Clearing Google Chrome's SQLlite database entries for our chat.</li>
-                                <li>Ensuring that the nothing regarding our site is saved in memory.</li>
-                                <li>Do this or that</li>
+                                <li>Clearing Google Chrome's SQLlite database entries for our chat.  This covers anything which could be used for forensic evidence which includes:
+                                    <ol type="A">
+                                        <li>Files</li>
+                                        <li>Datatables</li>
+                                        <li>Cache</li>
+                                    </ol>
+                                </li>
+                                <li>Ensuring that majority of our cleaning is run in memory and not on the disk.</li>
+                                <li>We clean everything we can with a <i>'scalpel effect'</i>.  Meaning we try to remove only that data that is pertinent to our web application.</li>
                             </ol>
                             <p><strong>MEANS:</strong> We use unique methods to remotely wipe our site off of your computer.  Team Wolfhammer has created a way to...</p>
-                            <p><strong>TESTING:</strong> We've tested our project with several forensic tools to ensure anonymity at ForensiChat.  Feel safe using ForensiChat knowing that team Wolfhammer has tested our application through the following tests:</p>
+                            <p><strong>TESTING:</strong> We've tested our project with several forensic tools to ensure anonymity at ForensiChat.  Feel safe using ForensiChat knowing that team Wolfhammer has tested our application through the following tests.  Click the results to view the generated reports!</p>
                             <ul>
-                                <li>Testing  Project #1 One:  Results Conclusive</li>
-                                <li>Testing  Project #2 Two:  Results Conclusive</li>
-                                <li>Testing  Project #3 Three:  Results Conclusive</li>
-                                <li>Hindsight?</li>
+                                <li>Foxton Chrome Analyzer:  <a href="#" class="resultsConclusive">Results Conclusive</a></li>
+                                <li>Foxton History Analyzer:  <a href="#" class="resultsConclusive">Results Conclusive</a></li>
+                                <li>NirSoft RegScanner:  <a href="#" class="resultsConclusive">Results Conclusive</a></li>
+                                <li>Nirsoft Chrome Cookies View:  <a href="#" class="resultsConclusive">Results Conclusive</a></li>
+                                <li>Nirsoft Chrome Cache View:  <a href="#" class="resultsConclusive">Results Conclusive</a></li>
+                                <li>Sysinternals Process Monitor:  <a href="#" class="resultsConclusive">Results Conclusive</a></li>
+                                <li>DB Browser for SQLite:  <a href="#" class="resultsConclusive">Results Conclusive</a></li>
                             </ul>
                         </div>
                     </div>

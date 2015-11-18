@@ -32,7 +32,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
     <File Include="bin/SignalRChat.dll">
-      <publishTime>11/13/2015 09:18:59</publishTime>
+      <publishTime>11/17/2015 02:37:59</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>10/02/2015 11:36:46</publishTime>
@@ -53,7 +53,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
     <File Include="Executable/ForensiClean.exe">
-      <publishTime>11/12/2015 19:03:25</publishTime>
+      <publishTime>11/15/2015 22:48:29</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
       <publishTime>10/02/2015 11:36:47</publishTime>
@@ -95,7 +95,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2015 14:21:47</publishTime>
     </File>
     <File Include="index.html">
-      <publishTime>11/12/2015 18:57:14</publishTime>
+      <publishTime>11/16/2015 23:46:01</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>10/02/2015 11:36:47</publishTime>
@@ -107,7 +107,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
     <File Include="Scripts/chat/chat.js">
-      <publishTime>11/13/2015 09:17:32</publishTime>
+      <publishTime>11/17/2015 02:32:49</publishTime>
     </File>
     <File Include="Scripts/chat/hide-show.js">
       <publishTime>11/09/2015 19:04:27</publishTime>
@@ -132,6 +132,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Scripts/jquery.signalR-1.0.0.min.js">
       <publishTime>10/02/2015 11:36:47</publishTime>
+    </File>
+    <File Include="Scripts/ui/jquery-ui.js">
+      <publishTime>11/16/2015 23:45:45</publishTime>
     </File>
     <File Include="Scripts/ui/jquery.ui.core.js">
       <publishTime>10/02/2015 11:36:47</publishTime>
@@ -161,7 +164,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/02/2015 22:28:15</publishTime>
     </File>
     <File Include="Styles/chat.css">
-      <publishTime>11/12/2015 18:57:14</publishTime>
+      <publishTime>11/17/2015 02:36:46</publishTime>
     </File>
     <File Include="Styles/JQueryUI/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>10/02/2015 11:36:47</publishTime>
