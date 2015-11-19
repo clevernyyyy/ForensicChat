@@ -415,7 +415,7 @@ def fix_crash(u):
 	            line = line.replace(src, target)
 	        lines.append(line)
 
-	print lines
+	#print lines
 	with open(p, 'w') as outfile:
 	    for line in lines:
 	    	outfile.write(line)
