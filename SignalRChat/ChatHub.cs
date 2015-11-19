@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define DEBUG
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -80,21 +81,32 @@ namespace SignalRChat
 
         public void Disconnect(string userId, string userName)
         {
-            var msg = "";
-            var id = Context.ConnectionId;
-            var user = Context.User;
+            bool develop = false;
+            //var cPath = @"G:\PleskVhosts\chat.adamschaal.com\ContentDelivery\";
 
-            // compose msg
-            msg += id;
+            var cPath = @"G:\PleskVhosts\adamschaal.com\chat.adamschaal.com\ContentDelivery\";
 
-            // TODO - actually disconnect the user
-            // TODO - open exe file
+            var cAppName = "caller139.exe";
+            var uIP = GetUser_IP();
+            
+            var cDevPath = @"C:\Users\clevernyyyy\Documents\GitHub\ForensicChat\Content Delivery\";
+            var cDevIP = "137.48.255.30";
 
-            var uip = GetUser_IP();
+            //System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+            //startInfo.FileName = @"G:\PleskVhosts\chat.adamschaal.com\ContentDelivery\caller.exe"; // Your absolute PATH 
+            //System.Diagnostics.Process.Start(startInfo, uIP);
+       
+            if (develop)
+            {
+                string filename = Path.Combine(cDevPath, cAppName);
+                var proc = System.Diagnostics.Process.Start(filename, cDevIP);
+            }
+            else
+            {
+                string filename = Path.Combine(cPath, cAppName);
+                var proc = System.Diagnostics.Process.Start(filename, cDevIP);
+            }
 
-            msg += uip;
-
-            LogMessageToFile(msg, "logout", "Logout.txt");
         }
 
         public void SendMessageToAll(string userName, string message, bool secureChat)
@@ -138,9 +150,9 @@ namespace SignalRChat
             return base.OnDisconnected();
         }
      
-        #endregion
+#endregion
 
-        #region private Messages
+#region private Messages
 
         private void AddMessageinCache(string userName, string message)
         {
@@ -149,9 +161,9 @@ namespace SignalRChat
             if (CurrentMessage.Count > 100)
                 CurrentMessage.RemoveAt(0);
         }
-        #endregion
+#endregion
 
-        #region logout
+#region logout
         protected string GetUser_IP()
         {
             string VisitorsIPAddr = string.Empty;
@@ -165,10 +177,10 @@ namespace SignalRChat
             }
             return VisitorsIPAddr;
         }
-        #endregion
+#endregion
 
 
-        #region logging
+#region logging
 
         public void LogMessageToFile(string msg, string log, string file)
         {
@@ -216,6 +228,6 @@ namespace SignalRChat
             GetTempPath(msg, "error", "Errors.txt");
         }
 
-        #endregion
+#endregion
     }
 }

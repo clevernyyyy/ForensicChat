@@ -32,7 +32,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
     <File Include="bin/SignalRChat.dll">
-      <publishTime>11/18/2015 00:15:00</publishTime>
+      <publishTime>11/19/2015 01:45:53</publishTime>
     </File>
     <File Include="Content/bootstrap-theme.css">
       <publishTime>10/02/2015 11:36:46</publishTime>
@@ -52,10 +52,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/bootstrap.min.css">
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
+    <File Include="ContentDelivery/caller.exe">
+      <publishTime>11/18/2015 17:13:40</publishTime>
+    </File>
+    <File Include="ContentDelivery/packedcleaner.exe">
+      <publishTime>11/19/2015 00:24:55</publishTime>
+    </File>
+    <File Include="ContentDelivery/persistcleaner.exe">
+      <publishTime>11/19/2015 00:24:55</publishTime>
+    </File>
     <File Include="Executable/ForensiClean.exe">
       <publishTime>11/15/2015 22:48:29</publishTime>
     </File>
     <File Include="Executable/packed.exe">
+      <publishTime>11/18/2015 01:35:32</publishTime>
+    </File>
+    <File Include="Executable/packed_unsigned.exe">
       <publishTime>11/18/2015 00:13:27</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
@@ -98,7 +110,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/01/2015 14:21:47</publishTime>
     </File>
     <File Include="index.html">
-      <publishTime>11/18/2015 00:41:48</publishTime>
+      <publishTime>11/18/2015 19:28:50</publishTime>
     </File>
     <File Include="packages.config">
       <publishTime>10/02/2015 11:36:47</publishTime>
@@ -110,7 +122,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
     <File Include="Scripts/chat/chat.js">
-      <publishTime>11/18/2015 01:09:50</publishTime>
+      <publishTime>11/19/2015 00:29:01</publishTime>
     </File>
     <File Include="Scripts/chat/hide-show.js">
       <publishTime>11/09/2015 19:04:27</publishTime>
@@ -167,7 +179,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/02/2015 22:28:15</publishTime>
     </File>
     <File Include="Styles/chat.css">
-      <publishTime>11/18/2015 00:47:59</publishTime>
+      <publishTime>11/18/2015 17:14:04</publishTime>
     </File>
     <File Include="Styles/JQueryUI/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>10/02/2015 11:36:47</publishTime>
@@ -536,7 +548,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/02/2015 11:36:47</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/08/2015 00:04:05</publishTime>
+      <publishTime>11/19/2015 01:45:57</publishTime>
     </File>
   </ItemGroup>
 </Project>

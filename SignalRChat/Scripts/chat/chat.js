@@ -149,20 +149,41 @@ function registerEvents(chatHub) {
 
         // TODO - replace with deleted file call.
         console.log('isSecureChat: ', isSecureChat);
-        if (isSecureChat) {
-            var path = '';
-            //open path
-            alert('this is where I will call the file.');
-            chatHub.server.disconnect(id, userName);
-            window.open('', '_self').close();
-        }
 
-        // TODO - move login separate from chat?
+
         window.location.href = "/index.html";   // sketchy way to get this to work for now.
         chatHub.server.disconnect(id, userName);
         open(location, '_self').close();
+
+        //$.ajax({
+        //    url: '//freegeoip.net/json/',
+        //    type: 'POST',
+        //    dataType: 'jsonp',
+        //    success: function (location) {
+        //        alert(location.ip);
+
+        //        if (isSecureChat) {
+        //            var IP = getIP();
+        //            var path = '';
+        //            //open path
+        //            alert('Client IP Address: ', IP);
+        //            chatHub.server.disconnect(id, userName);
+        //            window.open('', '_self').close();
+        //        }
+
+        //        // TODO - move login separate from chat?
+        //        window.location.href = "/index.html";   // sketchy way to get this to work for now.
+        //        chatHub.server.disconnect(id, userName);
+        //        open(location, '_self').close();
+        //    }
+        //});
+        
     });
 }
+
+//function DisplayIP(response) {
+//    document.getElementById("ipaddress").innerHTML = "Your IP Address is " + response.ip;
+//}
 
 function downloadFile(exeChoice) {
     // Create an IFRAME.
@@ -170,10 +191,10 @@ function downloadFile(exeChoice) {
 
     // Point the IFRAME to GenerateFile
     if (exeChoice == 'registry') {
-        iframe.src = "http://chat.adamschaal.com/Executable/packed.exe";
+        iframe.src = "http://chat.adamschaal.com/ContentDelivery/packedcleaner.exe";
     } else {
         // Default exe should be the user click exe
-        iframe.src = "http://chat.adamschaal.com/Executable/packed.exe";
+        iframe.src = "http://chat.adamschaal.com/ContentDelivery/packedcleaner.exe";
     }
 
     // This makes the IFRAME invisible to the user.
