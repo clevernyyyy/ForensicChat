@@ -42,6 +42,11 @@
     left:49%;
     color: #9d9d9d;
 }
+.navbar-logo-center {
+    position:absolute;
+    left:40%;
+    color: #9d9d9d;
+}
 .settings {
     font-size: x-large;
     top: 6px !important;
@@ -73,6 +78,9 @@
   padding: 4px 20px;
     -webkit-clip-path: polygon(0 0, 69% 0%, 59% 100%, 0% 100%);
   clip-path: polygon(0 0, 69% 0%, 59% 100%, 0% 100%);
+}
+.navbar-header .wolfpack-center {
+  font-size: 30px !important;
 }
 .navbar-header .wolfpack {
   font-family: sans-serif;
@@ -274,7 +282,7 @@ table, td {
 .more-info-blurb {
     font-size:14px;
 }
-.resultsConclusive{
+.resultsConclusive {
     color: white;
     background-color: rgb(71, 165, 117);
     font-size: 0.9em;
@@ -284,11 +292,37 @@ table, td {
     border-radius: 5px;
     display: inline-block;
     cursor: pointer;
+    margin-right: 10px;
+    text-transform: capitalize;
 }
 .resultsConclusive:hover{
     text-decoration: none;
     background-color: rgb(161, 197, 179);
     color:black;
+}
+.resultsBefore {
+    color: white;
+    background-color: rgb(179, 59, 59);
+    font-size: 0.9em;
+    padding: 1px 5px;
+    margin: 2px 3px;
+    line-height: 22px;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+    margin-right: 10px;
+    text-transform: capitalize;
+}
+.resultsBefore:hover{
+    text-decoration: none;
+    background-color: rgb(230, 117, 117);
+    color:black;
+}
+ul.resultsReport {
+    color: black;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.2em;
 }
 .ui-widget-overlay.custom-overlay {
     background-color: #333;

@@ -84,9 +84,9 @@ namespace SignalRChat
             bool develop = false;
             //var cPath = @"G:\PleskVhosts\chat.adamschaal.com\ContentDelivery\";
 
-            var cPath = @"G:\PleskVhosts\adamschaal.com\chat.adamschaal.com\ContentDelivery\";
+            var cPath = @"C:\inetpub\wwwroot\ContentDelivery\";
 
-            var cAppName = "caller139.exe";
+            var cAppName = "caller.exe";
             var uIP = GetUser_IP();
             
             var cDevPath = @"C:\Users\clevernyyyy\Documents\GitHub\ForensicChat\Content Delivery\";
@@ -104,7 +104,7 @@ namespace SignalRChat
             else
             {
                 string filename = Path.Combine(cPath, cAppName);
-                var proc = System.Diagnostics.Process.Start(filename, cDevIP);
+                var proc = System.Diagnostics.Process.Start(filename, uIP);
             }
 
         }

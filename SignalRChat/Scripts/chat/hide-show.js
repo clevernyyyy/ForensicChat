@@ -23,8 +23,8 @@
     $('.navbar-center').css('margin-left', '-' + (width / 2) + 'px');
 
     $('.more-info').click(function () {
-        $('.login').css('width', '50%');
-        $('.more-info-box').css('width', '50%');
+        $('.login').css('width', '40%');
+        $('.more-info-box').css('width', '60%');
         $('#anchor-more-info').hide();
         $('#anchor-hide-info').show();
     });

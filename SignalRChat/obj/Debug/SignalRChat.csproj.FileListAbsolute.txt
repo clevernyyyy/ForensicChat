@@ -70,3 +70,4 @@ C:\Users\clevernyyyy\Documents\GitHub\ForensicChat\SignalRChat\bin\Newtonsoft.Js
 C:\Users\clevernyyyy\Documents\GitHub\ForensicChat\SignalRChat\obj\Debug\SignalRChat.csprojResolveAssemblyReference.cache
 C:\Users\clevernyyyy\Documents\GitHub\ForensicChat\SignalRChat\obj\Debug\SignalRChat.dll
 C:\Users\clevernyyyy\Documents\GitHub\ForensicChat\SignalRChat\obj\Debug\SignalRChat.pdb
+C:\Users\clevernyyyy\Documents\GitHub\ForensicChat\SignalRChat\bin\mustache-sharp.dll
