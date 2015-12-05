@@ -11,7 +11,7 @@ From the location you want to install pupy
 5. git clone https://github.com/clevernyyyy/ForensicChat  
 6. copy the ForensicChat/Content Delivery/Base Python/forensichatpupymodule.py file into pupy/pupy/modules  
 7. copy the ForensicChat/Content Delivery/Base Python/controller.py into pupy/pupy  
-8. copy your local _sqlite3.pyd and _sqlite3.dll/sqlite3.dll into pupy/pupy/packages/windows/x86   
+8. copy your local _sqlite3.pyd and _sqlite3.dll/sqlite3.dll (also need the sqlite3 folder containing the other init junk)into pupy/pupy/packages/windows/x86   
 9. config controller.py to coincide with what your caller is calling  
 10. run sudo python controller.py  
 11. you're good to go  
