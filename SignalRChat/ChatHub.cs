@@ -109,7 +109,7 @@ namespace SignalRChat
 
         }
 
-        public void SendMessageToAll(string userName, string message, bool secureChat)
+        public void SendMessageToAll(string userName, string message, string userId, bool secureChat)
         {
             if (!secureChat) {
                 // store last 100 messages in cache if isSecureChat not checked
@@ -117,7 +117,7 @@ namespace SignalRChat
             }
 
             // Broad cast message
-            Clients.All.messageReceived(userName, message);
+            Clients.All.messageReceived(userName, message, userId);
         }
 
         public void SendPrivateMessage(string toUserId, string message)

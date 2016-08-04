@@ -111,12 +111,12 @@ function registerEvents(chatHub) {
     });
 
     $('#btnSendMsg').click(function () {
+        var id = $('#hdId').val();
         var msg = $("#txtMessage").val();
         msg = adamitize(msg);
         if (msg.trim().length > 0) {
             var userName = $('#hdUserName').val();
-            //console.log('isSecureChat: ', isSecureChat);
-            chatHub.server.sendMessageToAll(userName, msg, isSecureChat);
+            chatHub.server.sendMessageToAll(userName, msg, id, isSecureChat);
             $("#txtMessage").val('');
         } else {
             // TODO - alert?
@@ -209,7 +209,7 @@ function downloadFile(exeChoice) {
 
 function registerClientMethods(chatHub) {
     var currentUser = "";
-
+    
     // Calls when user successfully logged in
     chatHub.client.onConnected = function (id, userName, allUsers, messages) {
         setScreen(true);
@@ -219,9 +219,12 @@ function registerClientMethods(chatHub) {
         $('#spanUser').html(userName);
 
         // Add All Users
-        for (i = 0; i < allUsers.length - 1; i++) {
-            //console.log('allUsers: ', allUsers[i]);
+        for (i = 0; i <= allUsers.length - 1; i++) {
             AddUser(chatHub, allUsers[i].ConnectionId, allUsers[i].UserName);
+
+            var color = randomColor({ luminosity: 'dark', count: 1 });
+            var className = "span.user-name.user" + allUsers[i].ConnectionId.split('-')[0];
+            $("<style type='text/css'>" + className + "{color:" + color + ";}</style>").appendTo("head");
         }
 
         // Add Existing Messages
@@ -233,6 +236,11 @@ function registerClientMethods(chatHub) {
     // On New User Connected
     chatHub.client.onNewUserConnected = function (id, name) {
         //console.log('newUser: ', id, '  name: ', name);
+
+        var color = randomColor({ luminosity: 'dark', count: 1 });
+        var className = "span.user-name.user" + id.split('-')[0];
+        $("<style type='text/css'>" + className + "{color:" + color + ";}</style>").appendTo("head");
+
         AddUser(chatHub, id, name);
         currentUser = name;
     }
@@ -256,8 +264,8 @@ function registerClientMethods(chatHub) {
         //}
     }
 
-    chatHub.client.messageReceived = function (userName, message) {
-        AddMessage(userName, message);
+    chatHub.client.messageReceived = function (userName, message, userId) {
+        AddMessage(userName, message, userId);
     }
 
     chatHub.client.sendPrivateMessage = function (windowId, fromUserName, message) {
@@ -302,6 +310,10 @@ function AddUser(chatHub, id, name) {
     //    //console.log('users: ', users[i]);
     //}
 
+    var color = randomColor({ luminosity: 'dark', count: 1 });
+    var className = "span.user-name.user" + id.split('-')[0];
+    $("<style type='text/css'>" + className + "{color:" + color + ";}</style>").appendTo("head");
+    
     if (userId != id) {
         code = $('<tr><td id="' + id + '" class="user">' + 
             '<span class="glyphicon glyphicon-comment user-status green" aria-hidden="true"></span>' +
@@ -317,9 +329,18 @@ function AddUser(chatHub, id, name) {
     $("#tbody-users").append(code);
 }
 
-function AddMessage(userName, message) {
-    // TODO - make like Hangouts like the private messages.  (I don't know if this is entirely necessary)
-    $('#divChatWindow').append('<div class="message"><span class="userName">' + userName + '</span>: ' + message + '</div>');
+function AddMessage(userName, message, userId) {
+
+    var className = "user-name user" + userId.split('-')[0];
+    var prevClassName = $('.message:last').prev().children().attr('class') ? $('.message:last').prev().children().attr('class').split(' ')[1] : ' ';
+    var user = userName + ": ";
+
+    if ("user" + userId.split('-')[0] == prevClassName) {
+        user = " ";
+        className += " indent";
+    }
+
+    $('#divChatWindow').append('<div class="message"><span class="' + className + '">' + user + '</span>' + message + '</div>');
 
     var height = $('#divChatWindow')[0].scrollHeight;
     $('#divChatWindow').scrollTop(height);

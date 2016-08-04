@@ -353,6 +353,21 @@ ul.resultsReport {
     margin-left: 10px;
 }
 
+
+/**
+    MAIN MESSGAE BOX
+**/
+.user-name {
+    font-weight:bolder;
+    text-transform: uppercase;
+}
+.indent {
+    margin-left: 40px;
+}
+
+
+
+
 /**
     PRIVATE MESSAGES
 **/
@@ -526,3 +541,8 @@ ul.resultsReport {
            margin-left:4px;
            width: 55px;
         }
+
+.software-tag
+{
+    width: 200px;
+}

@@ -110,6 +110,7 @@
     <Content Include="Scripts\chat\hide-show.js" />
     <Content Include="Scripts\chat\utils.js" />
     <Content Include="Scripts\chat\xss.js" />
+    <Content Include="Scripts\color\randomColor.js" />
     <Content Include="Scripts\ui\jquery-ui.js" />
     <Content Include="Sounds\new_message_alert.wav" />
     <Content Include="Sounds\user_logout_alert.aiff" />

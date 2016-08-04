@@ -2,7 +2,8 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
-    <NameOfLastUsedPublishProfile>uno.forensics</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>chat.adamschaal.com</NameOfLastUsedPublishProfile>
+    <UseIISExpress>true</UseIISExpress>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

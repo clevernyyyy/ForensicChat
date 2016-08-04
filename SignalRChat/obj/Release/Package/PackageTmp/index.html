@@ -34,6 +34,7 @@
         <script src="/Scripts/chat/xss.js"></script>
         <script src="/Scripts/chat/hide-show.js"></script>
         <script src="/Scripts/chat/chat.js"></script>
+        <script src="/Scripts/color/randomColor.js"></script>
     </head>
 <!-- TODO - unify all classes - i.e. camel case or hyphenated, lower case or what?-->
     <body>
@@ -148,14 +149,19 @@
                             <p><strong>MEANS:</strong> We use unique methods to remotely wipe our site off of your computer.  Team Wolfhammer has created a way to...</p>
                             <p><strong>TESTING:</strong> We've tested our project with several forensic tools to ensure anonymity at ForensiChat.  Feel safe using ForensiChat knowing that team Wolfhammer has tested our application through the following tests.  Click the results to view the generated reports!</p>
                             <ul style="list-style-type: none;" class="resultsReport">
-                                <a href="Reports/Control/reports.html" class="resultsBefore">Before ForensiChat Results</a>
-                                <li><a href="#" class="resultsConclusive">Results Conclusive</a>Foxton Chrome Analyzer</li>
-                                <li><a href="#" class="resultsConclusive">Results Conclusive</a>Foxton History Analyzer</li>
-                                <li><a href="#" class="resultsConclusive">Results Conclusive</a>NirSoft RegScanner</li>
-                                <li><a href="#" class="resultsConclusive">Results Conclusive</a>Nirsoft Chrome Cookies View</li>
-                                <li><a href="#" class="resultsConclusive">Results Conclusive</a>Nirsoft Chrome Cache View</li>
-                                <li><a href="#" class="resultsConclusive">Results Conclusive</a>Sysinternals Process Monitor</li>
-                                <li><a href="#" class="resultsConclusive">Results Conclusive</a>DB Browser for SQLite</li>
+                                <a href="Reports/control/reports.html" class="resultsBefore software-tag">Before ForensiChat Results</a>
+                                <a href="Reports/experimental/reports.html" class="resultsBefore software-tag">After ForensiChat Results</a>
+                                <li><br>Software Used for analysis<li>
+                                <li>
+                                    <a href="https://www.foxtonforensics.com/chromeanalysis/" target="_blank" class="resultsConclusive software-tag">Foxton Chrome Analyzer</a>
+                                    <a href="https://www.foxtonforensics.com/browser-history-examiner/" target="_blank" class="resultsConclusive software-tag">Foxton History Analyzer</a>
+                                    <a href="http://www.nirsoft.net/utils/regscanner.html" target="_blank" class="resultsConclusive software-tag">NirSoft RegScanner</a>
+                                    <a href="http://www.nirsoft.net/utils/chrome_cookies_view.html" target="_blank" class="resultsConclusive software-tag">Nirsoft Chrome Cookies View</a>
+                                    <a href="http://www.nirsoft.net/utils/chrome_history_view.html" target="_blank" class="resultsConclusive software-tag">Nirsoft History View</a>
+                                    <a href="http://www.nirsoft.net/utils/chrome_cache_view.html" target="_blank" class="resultsConclusive software-tag">Nirsoft Chrome Cache View</a>
+                                    <a href="https://technet.microsoft.com/en-us/sysinternals/processmonitor.aspx" target="_blank" class="resultsConclusive software-tag">Sysinternals Procmon</a>
+                                    <a href="http://sqlitebrowser.org/" target="_blank" class="resultsConclusive software-tag">DB Browser for SQLite</a>
+                                </li>
                             </ul>
                         </div>
                     </div>

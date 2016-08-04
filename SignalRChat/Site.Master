@@ -69,6 +69,7 @@
         <script src="/signalr/hubs"></script>
 
         <script src="/Scripts/chat/chat.js"></script>
+        <script src="Scripts/color/randomColor.js"></script>
         <script src="http://caja.appspot.com/html-css-sanitizer-minified.js"></script>
 </body>
 </html>
