@@ -128,7 +128,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2016 10:13:21</publishTime>
     </File>
     <File Include="Scripts/chat/chat.js">
-      <publishTime>08/04/2016 13:21:26</publishTime>
+      <publishTime>08/04/2016 17:19:13</publishTime>
     </File>
     <File Include="Scripts/chat/hide-show.js">
       <publishTime>08/04/2016 10:13:21</publishTime>
@@ -188,7 +188,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/04/2016 10:13:21</publishTime>
     </File>
     <File Include="Styles/chat.css">
-      <publishTime>08/04/2016 12:06:06</publishTime>
+      <publishTime>08/04/2016 17:14:52</publishTime>
     </File>
     <File Include="Styles/JQueryUI/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>08/04/2016 10:13:21</publishTime>

@@ -332,18 +332,30 @@ function AddUser(chatHub, id, name) {
 function AddMessage(userName, message, userId) {
 
     var className = "user-name user" + userId.split('-')[0];
-    var prevClassName = $('.message:last').prev().children().attr('class') ? $('.message:last').prev().children().attr('class').split(' ')[1] : ' ';
-    var user = userName + ": ";
+    var prevClassName = $('.message:last').children().attr('class') ? $('.message:last').children().attr('class').split(' ')[1] : ' ';
+    var user = userName;
+    var time = getTimeStr();
 
     if ("user" + userId.split('-')[0] == prevClassName) {
         user = " ";
-        className += " indent";
+    } else {
+        user += "<span class='time'>" + time + "</span>";
+        className += " spacing-top";
     }
 
     $('#divChatWindow').append('<div class="message"><span class="' + className + '">' + user + '</span>' + message + '</div>');
 
     var height = $('#divChatWindow')[0].scrollHeight;
     $('#divChatWindow').scrollTop(height);
+}
+
+function getTimeStr() {
+    var dt = new Date();
+    var t = dt.toLocaleTimeString();
+    t = t.replace(/\u200E/g, '');
+    t = t.replace(/^([^\d]*\d{1,2}:\d{1,2}):\d{1,2}([^\d]*)$/, '$1$2');
+    var result = t;
+    return result;
 }
 
 function OpenPrivateChatWindow(chatHub, id, userName) {

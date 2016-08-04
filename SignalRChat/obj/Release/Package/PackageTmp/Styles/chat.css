@@ -357,15 +357,25 @@ ul.resultsReport {
 /**
     MAIN MESSGAE BOX
 **/
+.message {
+    font-size: 12px;
+    letter-spacing: 0.03em;
+}
 .user-name {
     font-weight:bolder;
-    text-transform: uppercase;
+    font-size:14px;
+    display: inherit;
 }
-.indent {
-    margin-left: 40px;
+.spacing-top {
+    margin-top:10px;
 }
-
-
+.time {
+    font-size: 1.25rem;
+    font-weight: lighter;
+    color: #9e9ea6;
+    letter-spacing: normal;
+    margin-left: 7px;
+}
 
 
 /**
